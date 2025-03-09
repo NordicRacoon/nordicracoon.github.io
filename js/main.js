@@ -6,10 +6,10 @@ const doParticles = true;
 const tellUsersWhenServerIsOffline = true;
 
 // If tellUsersWhenServerIsOffline is set to true, what text should be displayed?
-const serverOfflineText = "Server isn't online!";
+const serverOfflineText = "Server ist Offline!";
 
 // When a user clicks on your server IP, what should it display briefly after the IP has been copied?
-const ipCopiedText = "IP copied!";
+const ipCopiedText = "IP Kopiert!";
 
 
 // Particles initialisation

@@ -1,11 +1,7 @@
-<!-- Proudly created by Billy (https://bybilly.uk) -->
-<!-- Version: 1.10 -->
-
 <!DOCTYPE html>
 <html>
 <head>
-	<!-- Info meta tags, important for social media + SEO -->
-	<title>MyServer - Official Website</title>
+	<title>Æonforge Empire - Start</title>
 	<meta name="description" content="Das Admin Dashboard von Æonforge Empire.">
 	<meta property="og:title" content="Æonforge Empire - Admin Dashboard">
 	<meta property="og:site_name" content="MyServer">
@@ -22,19 +18,29 @@
 	<link rel="stylesheet" href="css/stylesheet.css">
 </head>
 <body>
-	<!-- The following line is used for the background particles -->
 	<div id="tsparticles"></div>
 
 	<div class="container">
 		<div class="logo">
-			<!-- In the img folder, upload your logo -->
-			<!-- Make sure you name it 'logo.png' or update the code below -->
 			<img src="img/logo.png" alt="MyServer logo">
 		</div>
 
+		<div class="video-container">
+			<iframe width="560" height="315" src="https://www.youtube.com/embed/1lWDHaqw-B4?si=hqAaMbiFBHpet0fo" 
+				title="YouTube Video" frameborder="0" allowfullscreen></iframe>
+		</div>		
+
 		<div class="items">
-			<!-- Replace # with your Discord invite URL-->
+
 			<a href="#" class="item">
+				<div>
+					<img src="img/discord.jpg" alt="Discord icon" class="img">
+					<p class="subtitle">Offizieller Æonforge</p>
+					<p class="title">Discord</p>
+				</div>
+				</a>
+
+			<a href="https://aeonforge-network.net" class="item">
 			<div>
 				<img src="img/forums.png" alt="Forum icon" class="img">
 				<p class="subtitle">Das Offizielle</p>
@@ -42,17 +48,7 @@
 			</div>
 			</a>
 
-			<!-- Replace # with your store URL -->
-			<a href="#" class="item">
-			<div>
-				<img src="img/discord.png" alt="Discord icon" class="img">
-				<p class="subtitle">Offizieller Æonforge</p>
-				<p class="title">Discord</p>
-			</div>
-			</a>
-
-			<!-- Replace # with your vote URL -->
-			<a href="#" class="item">
+			<a href="https://gitlab.aeonforge-network.net" class="item">
 			<div>
 				<img src="img/gitlab.png" alt="Gitlab icon" class="img">
 				<p class="subtitle">Server Repository auf</p>
@@ -63,9 +59,6 @@
 		</div>
 
 		<div class="playercount" id="playercount">
-			<!-- Replace play.cubecraft.net with your server IP address -->
-			<!-- Do it on both line 69 and line 70 -->
-			<!-- Please set both your IP and port -->
 			<p>Entdecke mit <span id="sip" data-ip="mc.aeonforge-network.net" data-port="25565">
 			</span> anderen Spielern die Welt auf <span id="ip">mc.aeonforge-network.net</span></p>
 		</div>
