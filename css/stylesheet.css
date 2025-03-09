@@ -134,10 +134,9 @@ p {
     -o-transition: all 0.2s ease;
     transition: all 0.2s ease;
     margin-bottom: 8px;
-    max-width: 190px;
-    max-height: 165px;
-    width: 50%;
-    height: 50%;
+    max-width: 60%;  /* Verhindert, dass die Bilder über ihre ursprüngliche Größe hinaus vergrößert werden */
+    height: auto;     /* Erhält das Seitenverhältnis der Bilder */
+    margin-bottom: 7px;
 }
 
 .item img:hover {
