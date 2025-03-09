@@ -233,16 +233,28 @@ p {
 	}
 }
 
-.video-container {
+/* Container für beide Elemente */
+.media-container {
     display: flex;
-    justify-content: center;
-    margin: 20px 0;
-	margin-bottom: -2%;
+    justify-content: center; /* Zentriert das Video und das Widget nebeneinander */
+    align-items: center; /* Vertikale Zentrierung */
+    width: 100%;
+    position: relative;
 }
 
-.video-container iframe {
-    width: 100%;
-    max-width: 800px;
-    height: 450px;
-    border-radius: 10px;
+/* YouTube Video Container */
+.video-container {
+    width: 80%; /* Das Video nimmt ca. 56% der Bildschirmbreite ein */
+    margin-right: 20px; /* Abstand zum Discord Widget */
+	margin-bottom: 2%;
+}
+
+/* Discord Widget Container */
+.discord-container {
+    position: fixed;
+    right: 20px; /* Abstand vom rechten Rand */
+    top: 50%; /* Vertikal zentriert */
+    transform: translateY(-50%); /* Korrektur für die genaue mittige Ausrichtung */
+    width: 350px; /* Feste Breite für das Discord Widget */
+    z-index: 10; /* Sicherstellen, dass es immer oben bleibt */
 }
