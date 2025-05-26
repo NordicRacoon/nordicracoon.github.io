@@ -801,3 +801,122 @@
   margin: 2rem 0; /* Abstand nach oben/unten */
   flex-wrap: wrap;
 }
+
+.callout {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  border-left: 4px solid;
+  border-radius: 12px;
+  margin: 2rem 0;
+  font-size: 1rem;
+  line-height: 1.6;
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border);
+  box-shadow: var(--glow);
+  transition: box-shadow 0.3s, transform 0.3s, background 0.3s;
+  will-change: box-shadow, transform, background;
+}
+
+.callout .icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  margin-top: 0.25rem;
+  color: var(--primary);
+  transition: transform 0.3s cubic-bezier(0.4,0,0.2,1), color 0.3s;
+}
+
+/* Hover effect & animation */
+.callout:hover {
+  box-shadow: 0 8px 32px 0 rgba(102,133,93,0.25), 0 1.5px 8px 0 rgba(0,0,0,0.18);
+  transform: translateY(-4px) scale(1.02);
+  background-color: rgba(255,255,255,0.06);
+  animation: callout-bounce 0.4s;
+}
+
+.callout:hover .icon {
+  transform: scale(1.15) rotate(-8deg);
+  filter: drop-shadow(0 0 8px currentColor);
+}
+
+@keyframes callout-bounce {
+  0%   { transform: translateY(0) scale(1);}
+  40%  { transform: translateY(-4px) scale(1.03);}
+  60%  { transform: translateY(-2px) scale(1.01);}
+  100% { transform: translateY(-4px) scale(1.02);}
+}
+
+/* Farben je Typ */
+.callout.info {
+  border-left-color: var(--primary-light);
+  background-color: rgba(78, 173, 197, 0.08);
+}
+.callout.info .icon {
+  color: #4f96d9;
+}
+
+.callout.success {
+  border-left-color: var(--primary);
+  background-color: rgba(129, 224, 103, 0.08);
+}
+.callout.success .icon {
+  color: #5dc262;
+}
+
+.callout.warning {
+  border-left-color: #f0ad4e;
+  background-color: rgba(240, 173, 78, 0.08);
+}
+.callout.warning .icon {
+  color: #f0ad4e;
+}
+
+.callout.error {
+  border-left-color: #d9534f;
+  background-color: rgba(217, 83, 79, 0.08);
+}
+.callout.error .icon {
+  color: #d9534f;
+}
+
+.callout.note {
+  border-left-color: #707070;
+  background-color: rgba(51, 51, 51, 0.08);
+}
+.callout.note .icon {
+  color: #727272;
+}
+
+.callout .content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.callout .content strong {
+  margin-bottom: 0.4rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.callout .content p {
+  margin: 0;
+  color: var(--text-secondary);
+}
+/* Responsive Callout */
+
+@media (max-width: 600px) {
+  .callout {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .callout .icon {
+    margin-bottom: 0.5rem;
+  }
+  
+  .callout .content {
+    width: 100%;
+  }
+}
