@@ -292,8 +292,9 @@
     .projects-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      gap: 2rem;
+      gap: 2.5rem; /* Increased gap for more space between project boxes */
       margin-top: 3rem;
+      margin-bottom: 3rem;
     }
 
     .project {
@@ -304,6 +305,7 @@
       padding: 2rem;
       transition: all 0.4s ease;
       overflow: hidden;
+      margin: 0; /* Ensure no default margin collapses grid gap */
     }
 
     .project::before {
@@ -326,8 +328,8 @@
       transform: translateY(-10px);
       border-color: var(--primary);
       box-shadow: 
-        0 20px 40px rgba(0, 0, 0, 0.3),
-        0 0 30px rgba(102, 133, 93, 0.3);
+      0 20px 40px rgba(0, 0, 0, 0.3),
+      0 0 30px rgba(102, 133, 93, 0.3);
     }
 
     .project h3 {

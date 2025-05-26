@@ -31,15 +31,30 @@
 
   <!-- Header -->
   <header>
+      <div class="logo-container">
+        <div class="logo-placeholder" id="logoContainer">
+          <div class="logo-fallback">NR</div>
+        </div>
+      </div>
     <div class="header-content">
       <h1 class="logo">NordicRacoon</h1>
-      <p class="tagline">Developer · Grafiker · Linux Enthusiast</p>
     </div>
-    <nav class="header-nav-modern">
-      <a href="index.html" data-section="about">Startseite</a>
-      <a href="galerie.html" data-section="projects">Galerie</a>
-      <a href="blog.html" data-section="skills">Blog</a>
-    </nav>
+<nav class="header-nav-modern" style="display: flex; align-items: center; justify-content: space-between; padding: 0.8rem 5rem;">
+  <div style="flex: 1;"></div>
+
+  <div style="flex: 1; display: flex; justify-content: center; gap: 1rem;">
+    <a href="index.html" data-section="about">Startseite</a>
+    <a href="galerie.html" data-section="projects">Galerie</a>
+    <a href="blog.html" data-section="skills">Blog</a>
+  </div>
+
+  <div style="flex: 1; display: flex; justify-content: flex-end; gap: 1.2rem;">
+    <a href="https://nordicracoon.gitbook.io" target="_blank" class="nav-icon-link" title="Docs">📘</a>
+    <a href="https://discord.gg/Y2ems85X7p" target="_blank" class="nav-icon-link" title="Discord">
+      <img src="images/discord.svg" alt="Discord-Logo">
+    </a>
+  </div>
+</nav>
   </header>
 
   <!-- Galerie Abschnitt -->
@@ -47,6 +62,30 @@
     <section id="gallery">
       <h2>Galerie</h2>
       <div class="projects-grid">
+        <div class="project">
+          <h3>Æonforge Logo</h3>
+          <img src="images/galerie/aeonforge-logo.png" alt="Logo von Æonforge Network">
+        </div>
+        <div class="project">
+          <h3>NordicRacoon Logo</h3>
+          <img src="images/galerie/nordic-pb.png" alt="Logo von NordicRacoon">
+        </div>
+        <div class="project">
+          <h3>Æonforge Empire Logo</h3>
+          <img src="images/galerie/aeonforge-empire.png" alt="Æonforge Empire Logo">
+        </div>
+        <div class="project">
+          <h3>Æonforge Logo</h3>
+          <img src="images/galerie/aeonforge-logo.png" alt="Logo von Æonforge Network">
+        </div>
+        <div class="project">
+          <h3>NordicRacoon Logo</h3>
+          <img src="images/galerie/nordic-pb.png" alt="Logo von NordicRacoon">
+        </div>
+        <div class="project">
+          <h3>Æonforge Empire Logo</h3>
+          <img src="images/galerie/aeonforge-empire.png" alt="Æonforge Empire Logo">
+        </div>
         <div class="project">
           <h3>Æonforge Logo</h3>
           <img src="images/galerie/aeonforge-logo.png" alt="Logo von Æonforge Network">
@@ -129,6 +168,62 @@
     lightbox.addEventListener('click', (e) => {
       if (e.target === lightbox) closeLightbox();
     });
+  
+    // Parallax effect for background
+    window.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset;
+      const rate = scrolled * -0.5;
+      const bgAnimation = document.querySelector('.bg-animation');
+      bgAnimation.style.transform = `translateY(${rate}px)`;
+    });
+
+    // Logo loading functionality
+    function loadLogo() {
+      const logoContainer = document.getElementById('logoContainer');
+      const logoFormats = ['logo.png', 'logo.jpg', 'logo.jpeg', 'logo.svg', 'logo.webp'];
+      
+      let logoLoaded = false;
+      
+      logoFormats.forEach(format => {
+        if (logoLoaded) return;
+        
+        const img = new Image();
+        img.onload = function() {
+          if (!logoLoaded) {
+            logoLoaded = true;
+            logoContainer.innerHTML = `<img src="images/${format}" alt="NordicRacoon Logo" class="logo-image">`;
+          }
+        };
+        img.onerror = function() {
+          // Logo not found, keep fallback
+        };
+        img.src = `images/${format}`;
+      });
+    }
+
+    // Load logo when page loads
+    window.addEventListener('load', loadLogo);
+
+    // Floating navigation functionality
+    const floatingNav = document.getElementById('floatingNav');
+    const navLinks = floatingNav.querySelectorAll('a[data-section]');
+    let currentSection = '';
+
+    // Show/hide floating nav on scroll
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY;
+      const headerHeight = document.querySelector('header').offsetHeight;
+      
+      if (scrollY > headerHeight + 100) {
+        floatingNav.classList.add('visible');
+      } else {
+        floatingNav.classList.remove('visible');
+      }
+
+      // Update active nav link
+      updateActiveNavLink();
+    });
+    
   </script>
 </body>
 </html>
