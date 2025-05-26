@@ -794,3 +794,10 @@
   display: block;
 }
 
+.button-row {
+  display: flex;
+  justify-content: center;
+  gap: 2rem; /* Abstand zwischen Buttons */
+  margin: 2rem 0; /* Abstand nach oben/unten */
+  flex-wrap: wrap;
+}
