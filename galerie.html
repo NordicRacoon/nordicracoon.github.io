@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NordicRacoon – Galerie</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="page-galerie">
+  <div class="bg-animation"></div>
+
+  <!-- Navigation -->
+  <nav class="floating-nav" id="floatingNav" style="display: flex; align-items: center; padding: 0.8rem 2rem;">
+    <a href="#" class="nav-logo">
+      <img src="images/logo.svg" alt="Logo" style="height: 28px;">
+    </a>
+    <div style="display: flex; gap: 1.5rem; justify-content: center; flex-grow: 1;">
+      <a href="index.html" data-section="about">Startseite</a>
+      <a href="galerie.html" data-section="projects">Galerie</a>
+      <a href="blog.html" data-section="skills">Blog</a>
+    </div>
+    <div style="display: flex; gap: 0.5rem; margin-left: auto;">
+      <a href="https://nordicracoon.gitbook.io" target="_blank" class="nav-icon-link" title="Docs">📘</a>
+      <a href="https://discord.gg/Y2ems85X7p" target="_blank" class="nav-icon-link" title="Discord">
+        <img src="images/discord.svg" alt="Discord-Logo">
+      </a>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header>
+    <div class="header-content">
+      <h1 class="logo">NordicRacoon</h1>
+      <p class="tagline">Developer · Grafiker · Linux Enthusiast</p>
+    </div>
+    <nav class="header-nav-modern">
+      <a href="index.html" data-section="about">Startseite</a>
+      <a href="galerie.html" data-section="projects">Galerie</a>
+      <a href="blog.html" data-section="skills">Blog</a>
+    </nav>
+  </header>
+
+  <!-- Galerie Abschnitt -->
+  <main>
+    <section id="gallery">
+      <h2>Galerie</h2>
+      <div class="projects-grid">
+        <div class="project">
+          <h3>Æonforge Logo</h3>
+          <img src="images/galerie/aeonforge-logo.png" alt="Logo von Æonforge Network">
+        </div>
+        <div class="project">
+          <h3>NordicRacoon Logo</h3>
+          <img src="images/galerie/nordic-pb.png" alt="Logo von NordicRacoon">
+        </div>
+        <div class="project">
+          <h3>Æonforge Empire Logo</h3>
+          <img src="images/galerie/aeonforge-empire.png" alt="Æonforge Empire Logo">
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>&copy; ᴍᴀᴅᴇ ᴡɪᴛʜ ♥ ʙʏ ɴᴏʀᴅɪᴄʀᴀᴄᴏᴏɴ • 2025 • All Rights Reserved</footer>
+
+  <!-- Lightbox HTML -->
+  <div id="lightbox" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color: rgba(0,0,0,0.85); z-index:9999; justify-content:center; align-items:center; flex-direction: column;">
+    <span id="lightbox-close" style="position:absolute; top:20px; right:30px; font-size:2rem; color:white; cursor:pointer;">×</span>
+    <img id="lightbox-img" src="" alt="Zoom" style="max-width:90%; max-height:80%; border-radius:12px; box-shadow:0 0 30px rgba(0,0,0,0.6);">
+    <p id="lightbox-caption" style="color: #ccc; margin-top:1rem;"></p>
+    <div style="position:absolute; top:50%; left:0; right:0; display:flex; justify-content:space-between; pointer-events:none;">
+      <button id="prev-btn" style="pointer-events:auto; background:none; border:none; font-size:2.5rem; color:white; cursor:pointer; margin-left:20px;">‹</button>
+      <button id="next-btn" style="pointer-events:auto; background:none; border:none; font-size:2.5rem; color:white; cursor:pointer; margin-right:20px;">›</button>
+    </div>
+  </div>
+
+  <!-- Lightbox JS -->
+  <script>
+    const galleryImages = Array.from(document.querySelectorAll('.page-galerie .project img'));
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxCaption = document.getElementById('lightbox-caption');
+    const closeBtn = document.getElementById('lightbox-close');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+
+    let currentIndex = 0;
+
+    function openLightbox(index) {
+      currentIndex = index;
+      const img = galleryImages[index];
+      lightboxImg.src = img.src;
+      lightboxCaption.textContent = img.alt || 'Bild';
+      lightbox.style.display = 'flex';
+    }
+
+    function closeLightbox() {
+      lightbox.style.display = 'none';
+    }
+
+    function showNext() {
+      currentIndex = (currentIndex + 1) % galleryImages.length;
+      openLightbox(currentIndex);
+    }
+
+    function showPrev() {
+      currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+      openLightbox(currentIndex);
+    }
+
+    galleryImages.forEach((img, index) => {
+      img.addEventListener('click', () => openLightbox(index));
+    });
+
+    closeBtn.addEventListener('click', closeLightbox);
+    nextBtn.addEventListener('click', showNext);
+    prevBtn.addEventListener('click', showPrev);
+
+    document.addEventListener('keydown', (e) => {
+      if (lightbox.style.display === 'flex') {
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowRight') showNext();
+        if (e.key === 'ArrowLeft') showPrev();
+      }
+    });
+
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+  </script>
+</body>
+</html>
