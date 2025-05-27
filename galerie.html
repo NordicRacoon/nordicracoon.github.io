@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NordicRacoon – Galerie</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
   <link rel="icon" href="images/favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body class="page-galerie">
   <div class="bg-animation"></div>
 
@@ -31,30 +34,31 @@
 
   <!-- Header -->
   <header>
-      <div class="logo-container">
-        <div class="logo-placeholder" id="logoContainer">
-          <div class="logo-fallback">NR</div>
-        </div>
+    <div class="logo-container">
+      <div class="logo-placeholder" id="logoContainer">
+        <div class="logo-fallback">NR</div>
       </div>
+    </div>
     <div class="header-content">
       <h1 class="logo">NordicRacoon</h1>
     </div>
-<nav class="header-nav-modern" style="display: flex; align-items: center; justify-content: space-between; padding: 0.8rem 5rem;">
-  <div style="flex: 1;"></div>
+    <nav class="header-nav-modern"
+      style="display: flex; align-items: center; justify-content: space-between; padding: 0.8rem 5rem;">
+      <div style="flex: 1;"></div>
 
-  <div style="flex: 1; display: flex; justify-content: center; gap: 1rem;">
-    <a href="index.html" data-section="about">Startseite</a>
-    <a href="galerie.html" data-section="projects">Galerie</a>
-    <a href="blog.html" data-section="skills">Blog</a>
-  </div>
+      <div style="flex: 1; display: flex; justify-content: center; gap: 1rem;">
+        <a href="index.html" data-section="about">Startseite</a>
+        <a href="galerie.html" data-section="projects">Galerie</a>
+        <a href="blog.html" data-section="skills">Blog</a>
+      </div>
 
-  <div style="flex: 1; display: flex; justify-content: flex-end; gap: 1.2rem;">
-    <a href="https://nordicracoon.gitbook.io" target="_blank" class="nav-icon-link" title="Docs">📘</a>
-    <a href="https://discord.gg/Y2ems85X7p" target="_blank" class="nav-icon-link" title="Discord">
-      <img src="images/discord.svg" alt="Discord-Logo">
-    </a>
-  </div>
-</nav>
+      <div style="flex: 1; display: flex; justify-content: flex-end; gap: 1.2rem;">
+        <a href="https://nordicracoon.gitbook.io" target="_blank" class="nav-icon-link" title="Docs">📘</a>
+        <a href="https://discord.gg/Y2ems85X7p" target="_blank" class="nav-icon-link" title="Discord">
+          <img src="images/discord.svg" alt="Discord-Logo">
+        </a>
+      </div>
+    </nav>
   </header>
 
   <!-- Galerie Abschnitt -->
@@ -105,13 +109,19 @@
   <footer>&copy; ᴍᴀᴅᴇ ᴡɪᴛʜ ♥ ʙʏ ɴᴏʀᴅɪᴄʀᴀᴄᴏᴏɴ • 2025 • All Rights Reserved</footer>
 
   <!-- Lightbox HTML -->
-  <div id="lightbox" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color: rgba(0,0,0,0.85); z-index:9999; justify-content:center; align-items:center; flex-direction: column;">
-    <span id="lightbox-close" style="position:absolute; top:20px; right:30px; font-size:2rem; color:white; cursor:pointer;">×</span>
-    <img id="lightbox-img" src="" alt="Zoom" style="max-width:90%; max-height:80%; border-radius:12px; box-shadow:0 0 30px rgba(0,0,0,0.6);">
+  <div id="lightbox"
+    style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color: rgba(0,0,0,0.85); z-index:9999; justify-content:center; align-items:center; flex-direction: column;">
+    <span id="lightbox-close"
+      style="position:absolute; top:20px; right:30px; font-size:2rem; color:white; cursor:pointer;">×</span>
+    <img id="lightbox-img" src="" alt="Zoom"
+      style="max-width:90%; max-height:80%; border-radius:12px; box-shadow:0 0 30px rgba(0,0,0,0.6);">
     <p id="lightbox-caption" style="color: #ccc; margin-top:1rem;"></p>
-    <div style="position:absolute; top:50%; left:0; right:0; display:flex; justify-content:space-between; pointer-events:none;">
-      <button id="prev-btn" style="pointer-events:auto; background:none; border:none; font-size:2.5rem; color:white; cursor:pointer; margin-left:20px;">‹</button>
-      <button id="next-btn" style="pointer-events:auto; background:none; border:none; font-size:2.5rem; color:white; cursor:pointer; margin-right:20px;">›</button>
+    <div
+      style="position:absolute; top:50%; left:0; right:0; display:flex; justify-content:space-between; pointer-events:none;">
+      <button id="prev-btn"
+        style="pointer-events:auto; background:none; border:none; font-size:2.5rem; color:white; cursor:pointer; margin-left:20px;">‹</button>
+      <button id="next-btn"
+        style="pointer-events:auto; background:none; border:none; font-size:2.5rem; color:white; cursor:pointer; margin-right:20px;">›</button>
     </div>
   </div>
 
@@ -168,7 +178,7 @@
     lightbox.addEventListener('click', (e) => {
       if (e.target === lightbox) closeLightbox();
     });
-  
+
     // Parallax effect for background
     window.addEventListener('scroll', () => {
       const scrolled = window.pageYOffset;
@@ -181,20 +191,20 @@
     function loadLogo() {
       const logoContainer = document.getElementById('logoContainer');
       const logoFormats = ['logo.png', 'logo.jpg', 'logo.jpeg', 'logo.svg', 'logo.webp'];
-      
+
       let logoLoaded = false;
-      
+
       logoFormats.forEach(format => {
         if (logoLoaded) return;
-        
+
         const img = new Image();
-        img.onload = function() {
+        img.onload = function () {
           if (!logoLoaded) {
             logoLoaded = true;
             logoContainer.innerHTML = `<img src="images/${format}" alt="NordicRacoon Logo" class="logo-image">`;
           }
         };
-        img.onerror = function() {
+        img.onerror = function () {
           // Logo not found, keep fallback
         };
         img.src = `images/${format}`;
@@ -213,7 +223,7 @@
     window.addEventListener('scroll', () => {
       const scrollY = window.scrollY;
       const headerHeight = document.querySelector('header').offsetHeight;
-      
+
       if (scrollY > headerHeight + 100) {
         floatingNav.classList.add('visible');
       } else {
@@ -223,7 +233,8 @@
       // Update active nav link
       updateActiveNavLink();
     });
-    
+
   </script>
 </body>
+
 </html>
