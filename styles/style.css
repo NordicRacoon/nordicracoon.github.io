@@ -294,17 +294,17 @@ html::-webkit-scrollbar-corner {
     width: 100%;
     height: 100%;
     pointer-events: none;
-    z-index: 1;
+    z-index: -1;
 }
 
 .particle {
     position: absolute;
-    width: 8px;
-    height: 8px;
+    width: 4px;
+    height: 4px;
     border-radius: 50%;
     background: rgba(212, 175, 55, 0.5);
     box-shadow: 0 0 12px 4px rgba(212, 175, 55, 0.3);
-    animation: floatParticle 6s linear infinite;
+    animation: floatParticle 12s linear infinite;
 }
 
 @keyframes floatParticle {

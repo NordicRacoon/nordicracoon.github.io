@@ -31,7 +31,7 @@ window.addEventListener('keydown', function (e) {
 function createParticles() {
     const particlesContainer = document.getElementById('particles');
     if (!particlesContainer) return; // <-- Sicherstellen, dass das Element existiert!
-    const particleCount = 50;
+    const particleCount = 30;
 
     for (let i = 0; i < particleCount; i++) {
         const particle = document.createElement('div');
@@ -39,7 +39,7 @@ function createParticles() {
         particle.style.left = Math.random() * 100 + '%';
         particle.style.top = Math.random() * 100 + '%';
         particle.style.animationDelay = Math.random() * 4 + 's';
-        particle.style.animationDuration = (Math.random() * 3 + 2) + 's';
+        particle.style.animationDuration = (Math.random() * 6 + 9) + 's';
         particlesContainer.appendChild(particle);
     }
 }

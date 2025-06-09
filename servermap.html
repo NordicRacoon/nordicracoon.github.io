@@ -181,8 +181,8 @@
             </div>
         </div>
     </nav>
-            <div class="particles" id="particles"></div>
     <div class="main-content">
+        <div class="particles" id="particles"></div>
         <div class="map-header">
             <span class="map-ornament left"><i class="fas fa-globe-europe"></i></span>
             <i class="fas fa-map-location-dot"></i>Server Map
@@ -211,6 +211,20 @@
                 title="Aeonforge Server Map"
             ></iframe>
         </div>
+    </div>
+    <div class="modal" id="modal" tabindex="-1" aria-modal="true" role="dialog" style="display:none;">
+            <div class="modal-content">
+                <span class="modal-close" id="modalClose" title="Schließen">&times;</span>
+                <div class="modal-icon" id="modalIcon"></div>
+                <div class="modal-message" id="modalMessage"></div>
+                <button class="modal-btn" id="modalOk" type="button">OK</button>
+            </div>
+        </div>
+
+        <!-- Floating "Back to Top" Button -->
+        <button id="backToTopBtn" title="Nach oben" aria-label="Nach oben scrollen">
+            <i class="fas fa-arrow-up"></i>
+        </button>
     </div>
     <footer class="epic-footer">
         <div class="footer-content">
