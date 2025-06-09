@@ -428,23 +428,19 @@
 
         /* --- Team-Bereich Verbesserungen --- */
         .team-section {
-            margin: 64px auto 48px auto;
+            margin: 0 auto 48px auto;
             max-width: 1400px;
             width: 100%;
-            background: linear-gradient(120deg, #1a1614 80%, #2d2825 100%);
-            border-radius: 32px;
-            box-shadow: 0 8px 48px #000b, 0 0 0 4px #d4af3720;
-            padding: 54px 0 54px 0;
+            padding: 0 0 24px 0;
             color: #fffbe6;
             position: relative;
             text-align: center;
             overflow: visible;
             animation: fadeInUp 1s .2s both;
-            border: 2.5px solid #d4af3720;
         }
 
         .team-hero {
-            margin: 0 auto 32px auto;
+            margin: 0 auto 0 auto;
             text-align: center;
             max-width: 1200px;
         }
@@ -467,7 +463,6 @@
             font-family: 'Marcellus', serif;
             font-size: 1.15rem;
             color: #fffbe6cc;
-            margin-bottom: 18px;
             line-height: 1.6;
             text-shadow: 0 1px 8px #0004;
         }
@@ -488,19 +483,62 @@
 
         .team-group-title {
             font-family: 'Cinzel', serif;
-            font-size: 1.22rem;
+            font-size: 1.35rem;
             font-weight: bold;
-            margin-bottom: 36px;
-            margin-top: 0;
+            margin-bottom: 38px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 14px;
             justify-content: center;
             text-align: center;
-            letter-spacing: 1px;
-            text-shadow: 0 1px 8px #0004;
+            letter-spacing: 1.5px;
+            text-shadow: 0 2px 16px #0008, 0 0 8px #d4af3740;
+            padding: 24px 32px;
+            border-radius: 16px;
+            border: 3px solid #d4af37;
+            box-shadow: 0 8px 40px #d4af3730, 0 0 0 6px #d4af3720;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            overflow: visible;
         }
-
+        .team-group-title::before,
+        .team-group-title::after {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 50%;
+            width: 220px; /* vorher 110px, jetzt doppelt so lang */
+            height: 10px;
+            background: none;
+            pointer-events: none;
+            opacity: 1;
+        }
+        .team-group-title::before {
+            left: -230px; /* angepasst für neue Länge */
+            transform: translateY(-50%);
+            background: linear-gradient(
+            to left,
+            rgba(212,175,55,0.7) 0%,
+            rgba(212,175,55,0.3) 60%,
+            rgba(212,175,55,0.0) 100%
+            );
+            /* Spitze nach außen (links) */
+            clip-path: polygon(0% 50%, 100% 0%, 100% 100%);
+        }
+        .team-group-title::after {
+            right: -230px; /* angepasst für neue Länge */
+            transform: translateY(-50%);
+            background: linear-gradient(
+            to right,
+            rgba(212,175,55,0.7) 0%,
+            rgba(212,175,55,0.3) 60%,
+            rgba(212,175,55,0.0) 100%
+            );
+            /* Spitze nach außen (rechts) */
+            clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
+        }
         .team-group-title.founder {
             color: #d4af37;
         }
@@ -913,6 +951,7 @@
                 </div>
             </div>
         </nav>
+        <div class="particles" id="particles"></div>
         <div class="wiki-hero">
             <div class="wiki-hero-title"><i class="fas fa-users"></i> Rassenübersicht</div>
             <div class="wiki-hero-desc">
