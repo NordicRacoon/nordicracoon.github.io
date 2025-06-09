@@ -389,6 +389,7 @@ html::-webkit-scrollbar-corner {
 /* Logo */
 .logo-container {
     margin-bottom: 18px;
+    filter: brightness(1.08) saturate(1.25) drop-shadow(0 0 12px #6e5e27cc);
 }
 
 .hero-logo {
