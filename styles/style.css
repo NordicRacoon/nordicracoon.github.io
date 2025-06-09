@@ -922,6 +922,66 @@ html::-webkit-scrollbar-corner {
     }
 }
 
+@media (max-width: 900px) {
+    .navbar-links > .navbar-dropdown {
+        width: 100%;
+        justify-content: flex-start;
+    }
+    .navbar-links > .navbar-dropdown > .dropdown-toggle {
+        width: 100%;
+        padding: 18px 0 18px 22px;
+        border-radius: 0;
+        background: none;
+        color: #C6B290;
+        font-size: 1.15rem;
+        display: block;
+        text-align: left;
+        height: auto; /* Fix: gleiche Höhe wie andere Links */
+    }
+    .navbar-links > .navbar-dropdown > .dropdown-toggle .fa-caret-down {
+        float: center;
+        margin-right: 18px;
+        margin-left: 0;
+    }
+    .navbar-links > .navbar-dropdown > .dropdown-menu {
+        display: none; /* Standard: versteckt */
+    }
+    .navbar-links > .navbar-dropdown.open > .dropdown-menu {
+        display: flex; /* Nur bei .open sichtbar */
+        flex-direction: column;
+    }
+    .dropdown-menu {
+        position: static;
+        left: 0;
+        transform: none;
+        min-width: 0;
+        width: 100%;
+        border-radius: 0 0 12px 12px;
+        box-shadow: none;
+        background: #2d2825;
+        padding: 0;
+        margin: 0;
+        opacity: 1;
+        pointer-events: auto;
+    }
+    .dropdown-menu li a {
+        width: 100%;
+        min-width: 0;
+        padding: 16px 0 16px 32px;
+        margin: 0;
+        border-radius: 0;
+        font-size: 1.08rem;
+        color: #C6B290;
+        background: none;
+        text-align: left;
+    }
+    .dropdown-menu li a:hover,
+    .dropdown-menu li a:focus {
+        background: #25211D;
+        color: #d4af37;
+    }
+}
+
 /* Navbar Dropdown Verbesserungen */
 .navbar-dropdown {
     position: relative;
@@ -1004,20 +1064,24 @@ html::-webkit-scrollbar-corner {
 
     .dropdown-menu {
         position: static;
-        box-shadow: none;
+        left: auto;
+        transform: none;
+        width: 100%;
         min-width: 0;
-        border-radius: 0;
+        border-radius: 0 0 12px 12px;
+        box-shadow: none;
         padding: 0;
-        background: none;
+        background: #2d2825;
         display: none;
         opacity: 1;
         pointer-events: auto;
-        transform: none;
         transition: none;
+        z-index: 10001;
     }
 
-    .navbar-dropdown.open>.dropdown-menu {
+    .navbar-dropdown.open > .dropdown-menu {
         display: flex;
+        flex-direction: column;
     }
 
     .dropdown-menu li a {
@@ -1058,8 +1122,8 @@ html::-webkit-scrollbar-corner {
 /* Hover für Toggle wie bei normalen Links */
 .navbar-links>.navbar-dropdown>.dropdown-toggle:hover,
 .navbar-links>.navbar-dropdown.open>.dropdown-toggle {
-    background: #49403C;
-    color: #1a1614;
+    background: #25211D;
+    color: #d4af37;
     border-radius: 8px 8px 0 0;
 }
 
@@ -1078,7 +1142,7 @@ html::-webkit-scrollbar-corner {
 
 /* Hover-Effekt für Dropdown-Links nur so breit wie der Link */
 .dropdown-menu li a {
-    color: #fffbe6;
+    color: #C6B290;
     padding: 10px 28px;
     font-size: 1.05rem;
     border-radius: 6px;
@@ -1741,30 +1805,6 @@ html::-webkit-scrollbar-corner {
             letter-spacing: 1.5px;
         }
 
-        .copy-btn {
-            background: #d4af37;
-            color: #1a1614;
-            border: none;
-            border-radius: 8px;
-            padding: 7px 18px 7px 12px;
-            font-size: 0.98em;
-            font-family: inherit;
-            cursor: pointer;
-            margin-left: 14px;
-            display: flex;
-            align-items: center;
-            gap: 7px;
-            transition: background 0.18s, color 0.18s, box-shadow 0.18s;
-            box-shadow: 0 2px 12px #d4af3720;
-            position: relative;
-        }
-
-        .copy-btn:hover,
-        .copy-btn:focus {
-            background: #fffbe6;
-            color: #b8941f;
-            box-shadow: 0 4px 16px #d4af3740;
-        }
 
 @keyframes ipCopiedGlow {
     0% {
@@ -1881,7 +1921,7 @@ html::-webkit-scrollbar-corner {
         padding: 18px 0 18px 22px;
         border-radius: 0;
         background: none;
-        color: #fffbe6;
+        color: #C6B290;
     }
 
     .dropdown-menu {
@@ -1900,6 +1940,86 @@ html::-webkit-scrollbar-corner {
         margin: 0;
         border-radius: 0;
     }
+}
+
+@media (max-width: 900px) {
+    .navbar-links {
+        position: absolute;
+        top: 64px;
+        left: 0;
+        width: 100vw;
+        background: #1a1614;
+        flex-direction: column;
+        z-index: 10000;
+    }
+    .navbar-links > .navbar-dropdown {
+        width: 100%;
+        position: static !important;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .navbar-links > .navbar-dropdown > .dropdown-toggle {
+        width: 100%;
+        padding: 18px 0 18px 22px;
+        border-radius: 0;
+        background: none;
+        color: #C6B290;
+        font-size: 1.15rem;
+        display: block;
+        text-align: center;
+        height: auto;
+        position: relative;
+        z-index: 2;
+    }
+    .navbar-links > .navbar-dropdown > .dropdown-menu {
+        position: static !important;
+        left: 0 !important;
+        transform: none !important;
+        min-width: 0 !important;
+        width: 100% !important;
+        border-radius: 0 0 12px 12px;
+        box-shadow: none;
+        margin: 0;
+        padding: 0;
+        background: #2d2825;
+        z-index: 1;
+        display: none;
+    }
+    .navbar-links > .navbar-dropdown.open > .dropdown-menu {
+        display: flex;
+        flex-direction: column;
+    }
+    .navbar-links > .navbar-dropdown > .dropdown-menu li {
+        width: 100%;
+        border-bottom: 1px solid #2d2825;
+    }
+    .navbar-links > .navbar-dropdown > .dropdown-menu li:last-child {
+        border-bottom: none;
+    }
+    .navbar-links > .navbar-dropdown > .dropdown-menu li a {
+        display: block;
+        width: 100%;
+        padding: 16px 0 16px 32px;
+        font-size: 1.08rem;
+        color: #C6B290;
+        background: none;
+        border-radius: 0;
+        margin: 0;
+        text-align: center;
+        position: relative;
+        z-index: 2;
+    }
+    .navbar-links > .navbar-dropdown > .dropdown-menu li a:hover,
+    .navbar-links > .navbar-dropdown > .dropdown-menu li a:focus {
+        background: #25211D;
+        color: #d4af37;
+    }
+}
+
+.dropdown-menu,
+.dropdown-menu li {
+    list-style: none !important;
 }
 
 /* Modernere Steps für HowToJoin */
