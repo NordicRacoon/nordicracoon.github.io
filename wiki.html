@@ -1,0 +1,1500 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rassen-Wiki | Aeonforge Network</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Marcellus&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="icon" href="img/favicon.png" type="image/png">
+    <style>
+        .wiki-hero {
+            margin: 48px auto 32px auto;
+            text-align: center;
+            max-width: 800px;
+        }
+
+        .wiki-hero-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2.3rem;
+            color: #d4af37;
+            margin-bottom: 10px;
+            letter-spacing: 1.5px;
+            text-shadow: 0 2px 16px #0008;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            animation: fadeInDown 1s .1s both;
+        }
+
+        .wiki-hero-desc {
+            font-family: 'Marcellus', serif;
+            font-size: 1.18rem;
+            color: #fffbe6cc;
+            margin-bottom: 18px;
+            line-height: 1.6;
+        }
+
+        .race-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 36px;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+
+        .race-card {
+            background: linear-gradient(120deg, #221e1c 80%, #2d2825 100%);
+            border-radius: 22px;
+            box-shadow: 0 4px 32px #000b, 0 0 0 4px #d4af3720;
+            padding: 38px 28px 28px 28px;
+            color: #fffbe6;
+            width: 350px;
+            max-width: 98vw;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 2.5px solid #d4af3730;
+            position: relative;
+            transition: box-shadow 0.22s, border-color 0.22s, transform 0.18s;
+            animation: fadeInUp 0.9s cubic-bezier(.23, 1.01, .32, 1) both;
+            opacity: 0;
+        }
+
+        .race-card:hover {
+            box-shadow: 0 12px 40px #d4af3740;
+            border-color: #d4af37;
+            transform: translateY(-6px) scale(1.025);
+            z-index: 2;
+        }
+
+        .race-portrait {
+            width: 124px;
+            height: 124px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #d4af37;
+            margin-bottom: 18px;
+            background: #181513;
+            box-shadow: 0 2px 16px #d4af3720;
+            transition: box-shadow 0.3s, border-color 0.3s, transform 0.22s;
+            animation: popIn 0.7s cubic-bezier(.23, 1.01, .32, 1) both;
+        }
+
+        .race-card:hover .race-portrait {
+            box-shadow: 0 0 24px 6px #d4af37aa;
+            border-color: #fffbe6;
+            transform: scale(1.06) rotate(-2deg);
+        }
+
+        .race-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.55rem;
+            color: #d4af37;
+            margin-bottom: 10px;
+            text-align: center;
+            letter-spacing: 1px;
+            text-shadow: 0 1px 8px #0004;
+        }
+
+        .race-desc {
+            font-family: 'Marcellus', serif;
+            font-size: 1.09rem;
+            color: #fffbe6cc;
+            margin-bottom: 18px;
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        .race-specs {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .race-specs-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 1.01rem;
+            color: #fffbe6;
+        }
+
+        .race-specs-table th,
+        .race-specs-table td {
+            padding: 4px 8px;
+            text-align: left;
+        }
+
+        .race-specs-table th {
+            color: #d4af37;
+            font-weight: 600;
+            width: 44%;
+        }
+
+        .race-specs-table tr:not(:last-child) td,
+        .race-specs-table tr:not(:last-child) th {
+            border-bottom: 1px solid #d4af3720;
+        }
+
+        .race-traits {
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        .race-traits-title {
+            color: #d4af37;
+            font-family: 'Cinzel', serif;
+            font-size: 1.08rem;
+            margin-bottom: 4px;
+            font-weight: bold;
+        }
+
+        .race-traits-list {
+            list-style: disc inside;
+            color: #fffbe6cc;
+            font-size: 1.01rem;
+            margin: 0 0 0 8px;
+            padding: 0;
+        }
+
+        .race-card .race-btn {
+            margin-top: 18px;
+            background: linear-gradient(135deg, #d4af37 0%, #b8941f 100%);
+            color: #1a1614;
+            border: none;
+            border-radius: 8px;
+            padding: 8px 24px;
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 10px #0004;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .race-card .race-btn:hover {
+            background: linear-gradient(135deg, #b8941f 0%, #d4af37 100%);
+            color: #fff;
+            box-shadow: 0 4px 18px #d4af3740;
+        }
+
+        .race-card .race-btn i {
+            font-size: 1.1em;
+        }
+
+        @media (max-width: 900px) {
+            .race-list {
+                flex-direction: column;
+                align-items: center;
+                gap: 28px;
+            }
+
+            .race-card {
+                width: 98vw;
+                max-width: 420px;
+                padding: 24px 8vw 18px 8vw;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .wiki-hero-title {
+                font-size: 1.4rem;
+            }
+
+            .race-card {
+                padding: 16px 2vw 12px 2vw;
+            }
+
+            .race-portrait {
+                width: 80px;
+                height: 80px;
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        @keyframes popIn {
+            from {
+                transform: scale(0.7);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .server-features-modern {
+            margin: 0 auto 32px auto;
+            max-width: 1200px;
+            padding: 32px 0 54px 0;
+            color: #fffbe6;
+            position: relative;
+            text-align: center;
+            overflow: visible;
+            animation: fadeInUp 1s .2s both;
+        }
+
+        .features-modern-hero {
+            margin: 0 auto 32px auto;
+            text-align: center;
+            max-width: 800px;
+            padding: 32px 18px 24px 18px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .features-modern-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2.3rem;
+            color: #d4af37;
+            margin-bottom: 10px;
+            letter-spacing: 1.5px;
+            text-shadow: 0 2px 16px #0008;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            animation: fadeInDown 1s .1s both;
+        }
+
+        .features-modern-desc {
+            font-family: 'Marcellus', serif;
+            font-size: 1.18rem;
+            color: #fffbe6cc;
+            margin-bottom: 8px;
+            line-height: 1.6;
+            text-shadow: 0 1px 8px #0004;
+        }
+
+        .features-modern-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 38px;
+            justify-content: center;
+            align-items: stretch;
+            margin-bottom: 24px;
+        }
+
+        .feature-modern-card {
+            background: linear-gradient(120deg, #221e1c 80%, #2d2825 100%);
+            border-radius: 28px;
+            box-shadow: 0 6px 32px #000b, 0 0 0 4px #d4af3720;
+            color: #fffbe6;
+            width: 320px;
+            max-width: 98vw;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            transition: box-shadow 0.22s, border-color 0.22s, transform 0.18s;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.9s cubic-bezier(.23, 1.01, .32, 1) both;
+            border: 2px solid #d4af3720;
+        }
+
+        .feature-modern-card:hover {
+            box-shadow: 0 16px 48px #d4af3740;
+            border-color: #d4af37;
+            transform: translateY(-8px) scale(1.03);
+            z-index: 2;
+        }
+
+        .feature-modern-img {
+            width: 100%;
+            height: 140px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 22px 22px 0 0;
+            filter: brightness(0.85) blur(0.1px);
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 2px 18px #0008;
+            border-bottom: 2px solid #d4af37;
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-end;
+        }
+
+        .feature-modern-icon {
+            background: linear-gradient(135deg, #d4af37 0%, #fffbe6 100%);
+            color: #1a1614;
+            border-radius: 50%;
+            width: 54px;
+            height: 54px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.7rem;
+            box-shadow: 0 2px 18px #d4af3720;
+            border: 2px solid #b8941f;
+            margin: 0 18px 12px 0;
+            animation: badgePulse 2.5s infinite alternate;
+            position: relative;
+            z-index: 2;
+        }
+
+        .feature-modern-content {
+            padding: 32px 24px 22px 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 2;
+            position: relative;
+        }
+
+        .feature-modern-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.22rem;
+            color: #d4af37;
+            font-weight: bold;
+            margin-bottom: 10px;
+            letter-spacing: 0.5px;
+            text-shadow: 0 1px 8px #0004;
+            text-align: center;
+        }
+
+        .feature-modern-desc {
+            font-family: 'Marcellus', serif;
+            font-size: 1.04rem;
+            color: #fffbe6cc;
+            line-height: 1.6;
+            text-align: center;
+            margin-bottom: 0;
+        }
+
+        @media (max-width: 900px) {
+            .features-modern-list {
+                gap: 18px;
+            }
+
+            .feature-modern-card {
+                width: 98vw;
+                max-width: 98vw;
+            }
+
+            .feature-modern-img {
+                height: 90px;
+            }
+
+            .feature-modern-content {
+                padding: 18px 8vw 14px 8vw;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .features-modern-hero {
+                padding: 18px 4vw 12px 4vw;
+            }
+
+            .feature-modern-card {
+                border-radius: 16px;
+            }
+
+            .feature-modern-img {
+                border-radius: 16px 16px 0 0;
+            }
+        }
+
+        /* --- Team-Bereich Verbesserungen --- */
+        .team-section {
+            margin: 64px auto 48px auto;
+            max-width: 1400px;
+            width: 100%;
+            background: linear-gradient(120deg, #1a1614 80%, #2d2825 100%);
+            border-radius: 32px;
+            box-shadow: 0 8px 48px #000b, 0 0 0 4px #d4af3720;
+            padding: 54px 0 54px 0;
+            color: #fffbe6;
+            position: relative;
+            text-align: center;
+            overflow: visible;
+            animation: fadeInUp 1s .2s both;
+            border: 2.5px solid #d4af3720;
+        }
+
+        .team-hero {
+            margin: 0 auto 32px auto;
+            text-align: center;
+            max-width: 1200px;
+        }
+
+        .team-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2.2rem;
+            color: #d4af37;
+            margin-bottom: 10px;
+            letter-spacing: 1.5px;
+            text-shadow: 0 2px 16px #0008;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            animation: fadeInDown 1s .1s both;
+        }
+
+        .team-desc {
+            font-family: 'Marcellus', serif;
+            font-size: 1.15rem;
+            color: #fffbe6cc;
+            margin-bottom: 18px;
+            line-height: 1.6;
+            text-shadow: 0 1px 8px #0004;
+        }
+
+        .team-hierarchy {
+            display: flex;
+            flex-direction: column;
+            gap: 44px;
+            align-items: center;
+            margin-top: 32px;
+        }
+
+        .team-group {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .team-group-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.22rem;
+            font-weight: bold;
+            margin-bottom: 36px;
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            justify-content: center;
+            text-align: center;
+            letter-spacing: 1px;
+            text-shadow: 0 1px 8px #0004;
+        }
+
+        .team-group-title.founder {
+            color: #d4af37;
+        }
+
+        .team-group-title.admin {
+            color: #b8941f;
+        }
+
+        .team-group-title.mod {
+            color: #3e8e41;
+        }
+
+        .team-group-title.supporter {
+            color: #1e90b8;
+        }
+
+        .team-group-title.helper {
+            color: #8e41a1;
+        }
+
+        .team-group-list {
+            display: flex;
+            flex-direction: row;
+            gap: 38px;
+            justify-content: center;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            margin-bottom: 8px;
+            margin-left: 0;
+        }
+
+        .team-card {
+            background: linear-gradient(120deg, #221e1c 80%, #2d2825 100%);
+            border-radius: 20px;
+            box-shadow: 0 4px 24px #000b, 0 0 0 4px #d4af3720;
+            color: #fffbe6;
+            width: 250px;
+            min-width: 180px;
+            max-width: 98vw;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: box-shadow 0.22s, border-color 0.22s, transform 0.18s;
+            position: relative;
+            overflow: visible;
+            border: 2px solid #d4af3720;
+            outline: none;
+            padding: 20px 10px 14px 10px;
+            margin-bottom: 0;
+            animation: fadeInUp 0.7s cubic-bezier(.23, 1.01, .32, 1) both;
+        }
+
+        .team-card:hover,
+        .team-card:focus {
+            box-shadow: 0 12px 40px #d4af3740;
+            border-color: #d4af37;
+            transform: translateY(-4px) scale(1.04);
+            z-index: 2;
+        }
+
+        .team-skin.small {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 12px;
+            margin-top: 2px;
+            position: relative;
+            width: 90px;
+            height: 120px;
+        }
+
+        .team-skin {
+            width: 120px;
+            height: 120px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: visible;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .team-skin .skin-frame img {
+            width: 100px;
+            height: 120px;
+            margin-bottom: 20px;
+            object-fit: contain;
+            display: block;
+        }
+
+        .team-skin-username {
+            position: absolute;
+            bottom: -18px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1a1614e6;
+            color: #d4af37;
+            font-family: 'Marcellus', serif;
+            font-size: 0.93rem;
+            padding: 2px 14px 2px 14px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px #0007;
+            pointer-events: none;
+            opacity: 0.95;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .team-info {
+            padding: 0 4px 4px 4px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .team-contact-row {
+            margin-top: 8px;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .team-contact-row a {
+            color: #d4af37;
+            background: #1a1614;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.15rem;
+            transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 8px #d4af3720;
+            text-decoration: none;
+        }
+
+        .team-contact-row a:hover {
+            background: #d4af37;
+            color: #1a1614;
+        }
+
+        .team-extra-info {
+            margin-top: 6px;
+            font-size: 0.92rem;
+            color: #fffbe6b0;
+            font-family: 'Marcellus', serif;
+            text-align: center;
+            line-height: 1.5;
+            background: #221e1c80;
+            border-radius: 10px;
+            padding: 6px 8px 4px 8px;
+            box-shadow: 0 2px 8px #0002;
+        }
+
+        .team-name {
+            font-family: 'Cinzel', serif;
+            font-size: 1.08rem;
+            color: #d4af37;
+            font-weight: bold;
+            margin-bottom: 2px;
+            letter-spacing: 0.5px;
+            text-shadow: 0 1px 8px #0004;
+            text-align: center;
+        }
+
+        .team-role {
+            font-family: 'Marcellus', serif;
+            font-size: 0.99rem;
+            color: #fffbe6cc;
+            margin-top: 10px;
+            margin-bottom: 4px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .team-desc-short {
+            font-family: 'Marcellus', serif;
+            font-size: 0.93rem;
+            color: #fffbe6b0;
+            text-align: center;
+            margin-bottom: 0;
+        }
+
+        .team-info .team-badges {
+            margin-bottom: 4px;
+            margin-top: 2px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            justify-content: center;
+        }
+
+        .team-badge {
+            display: inline-block;
+            font-size: 0.85em;
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            border-radius: 8px;
+            padding: 2px 8px;
+            margin-left: 4px;
+            margin-bottom: 2px;
+            vertical-align: middle;
+            background: #d4af37;
+            color: #1a1614;
+            box-shadow: 0 2px 8px #d4af3720;
+        }
+
+        .team-badge.founder {
+            background: linear-gradient(90deg, #d4af37 60%, #fffbe6 100%);
+            color: #1a1614;
+        }
+
+        .team-badge.admin {
+            background: linear-gradient(90deg, #b8941f 60%, #d4af37 100%);
+            color: #fffbe6;
+        }
+
+        .team-badge.mod {
+            background: linear-gradient(90deg, #3e8e41 60%, #d4af37 100%);
+            color: #fffbe6;
+        }
+
+        .team-badge.supporter {
+            background: linear-gradient(90deg, #1e90b8 60%, #d4af37 100%);
+            color: #fffbe6;
+        }
+
+        .team-badge.helper {
+            background: linear-gradient(90deg, #8e41a1 60%, #d4af37 100%);
+            color: #fffbe6;
+        }
+
+        .team-badge.dev {
+            background: linear-gradient(90deg, #1e90b8 60%, #d4af37 100%);
+            color: #fffbe6;
+        }
+
+        .team-badge.lore {
+            background: linear-gradient(90deg, #8e41a1 60%, #d4af37 100%);
+            color: #fffbe6;
+        }
+
+        .team-badge.builder {
+            background: linear-gradient(90deg, #3e8e41 60%, #d4af37 100%);
+            color: #fffbe6;
+        }
+
+        @media (max-width: 900px) {
+            .team-group-list {
+                gap: 18px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .team-card {
+                width: 98vw;
+                max-width: 220px;
+            }
+
+            .team-section {
+                padding: 24px 0 24px 0;
+            }
+        }
+
+        .skin-modal-bg {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            inset: 0;
+            background: rgba(20, 16, 12, 0.92);
+            align-items: center;
+            justify-content: center;
+            animation: fadeInSkinBg 0.3s;
+        }
+
+        @keyframes fadeInSkinBg {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .skin-modal-content {
+            background: linear-gradient(120deg, #221e1c 80%, #2d2825 100%);
+            border-radius: 24px;
+            box-shadow: 0 8px 48px #000b, 0 0 0 4px #d4af3720;
+            padding: 32px 32px 24px 32px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            animation: popIn 0.4s cubic-bezier(.23, 1.01, .32, 1) both;
+        }
+
+        .skin-modal-img {
+            width: auto;
+            height: auto;
+            border-radius: 28px;
+            border: 4px solid #d4af37;
+            background: #181513;
+            box-shadow: 0 4px 32px #d4af3720;
+            object-fit: cover;
+            margin-bottom: 18px;
+            transition: box-shadow 0.3s, border-color 0.3s, transform 0.22s;
+        }
+
+        .skin-modal-username {
+            font-family: 'Cinzel', serif;
+            font-size: 1.25rem;
+            color: #d4af37;
+            margin-bottom: 8px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-shadow: 0 1px 8px #0004;
+        }
+
+        .skin-modal-close {
+            position: absolute;
+            top: 12px;
+            right: 18px;
+            font-size: 2.1rem;
+            color: #fffbe6;
+            background: none;
+            border: none;
+            cursor: pointer;
+            opacity: 0.85;
+            transition: color 0.2s, opacity 0.2s;
+            z-index: 2;
+        }
+
+        .skin-modal-close:hover {
+            color: #d4af37;
+            opacity: 1;
+        }
+
+        @media (max-width: 600px) {
+            .skin-modal-content {
+                padding: 12px 4vw 12px 4vw;
+            }
+
+            .skin-modal-img {
+                width: 120px;
+                height: 160px;
+                border-radius: 16px;
+            }
+        }
+
+        /* Skin Hover & Glow Effekt */
+        .team-skin.small .skin-frame {
+            transition:
+                box-shadow 0.35s cubic-bezier(.23,1.01,.32,1),
+                transform 0.35s cubic-bezier(.23,1.01,.32,1),
+                border-color 0.25s;
+            position: relative;
+            z-index: 1;
+            cursor: pointer;
+        }
+
+        .team-skin.small img {
+            transition:
+                box-shadow 0.35s cubic-bezier(.23,1.01,.32,1),
+                border-color 0.25s,
+                transform 0.35s cubic-bezier(.23,1.01,.32,1),
+                filter 0.35s cubic-bezier(.23,1.01,.32,1);
+            filter: brightness(0.98) saturate(1.1);
+        }
+
+        .team-skin.small .skin-frame:hover img,
+        .team-skin.small .skin-frame:focus img {
+            filter: brightness(1.08) saturate(1.25) drop-shadow(0 0 12px #d4af37cc);
+            transform: scale(1.13) rotate(-2deg);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-content">
+        <nav class="epic-navbar">
+            <div class="navbar-container">
+                <a href="index.html" class="navbar-logo">
+                    <img src="img/banner.png" alt="Aeonforge Logo">
+                    Aeonforge
+                </a>
+                <ul class="navbar-links">
+                    <li><a href="index.html"><i class="fas fa-home"></i> Start</a></li>
+                    <li><a href="rules.html"><i class="fas fa-gavel"></i> Regelwerk</a></li>
+                    <li class="navbar-dropdown">
+                        <a href="javascript:void(0)" class="dropdown-toggle" tabindex="0"><i class="fas fa-server"></i>
+                            Der Server <i class="fas fa-caret-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="howtojoin.html"><i class="ri-sword-fill"></i> How to Join</a></li>
+                            <li><a href="wiki.html"><i class="fas fa-book"></i> Wiki</a></li>
+                            <li><a href="news.html"><i class="fas fa-newspaper"></i> News</a></li>
+                            <li><a href="roadmap.html"><i class="fas fa-map"></i> Roadmap</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="https://discord.gg/Awg9TdRdtw" target="_blank"><i class="ri-discord-line"></i>
+                            Discord</a></li>
+                    <li><a href="https://aeonforge-network.net/forum/" target="_blank"><i class="fas fa-scroll"></i>
+                            Forum</a></li>
+                </ul>
+                <div class="navbar-toggle" id="navbarToggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </nav>
+        <div class="wiki-hero">
+            <div class="wiki-hero-title"><i class="fas fa-users"></i> Rassenübersicht</div>
+            <div class="wiki-hero-desc">
+                Entdecke die spielbaren Rassen von Aeonforge. Jede Rasse besitzt eigene Stärken, Schwächen und eine
+                einzigartige Geschichte.<br>
+                Klicke auf eine Rasse, um mehr zu erfahren!
+            </div>
+        </div>
+        <div class="race-list">
+            <!-- Beispiel: Mensch -->
+            <div class="race-card" style="animation-delay:.1s;">
+                <img src="img/races/mensch.png" alt="Mensch Portrait" class="race-portrait">
+                <div class="race-title">Mensch</div>
+                <div class="race-desc">
+                    Menschen sind anpassungsfähig, ehrgeizig und zahlreich. Sie sind in allen Regionen anzutreffen und
+                    prägen die Geschichte Aeonforges maßgeblich. Ihre Vielseitigkeit macht sie zu Händlern, Kriegern,
+                    Gelehrten oder Herrschern.
+                </div>
+                <div class="race-specs">
+                    <table class="race-specs-table">
+                        <tr>
+                            <th>Ø Alter</th>
+                            <td>16–80 Jahre</td>
+                        </tr>
+                        <tr>
+                            <th>Größe</th>
+                            <td>1,60–1,90 m</td>
+                        </tr>
+                        <tr>
+                            <th>Besonderheiten</th>
+                            <td>Vielseitig, keine natürlichen Boni/Mali</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="race-traits">
+                    <div class="race-traits-title">Typische Eigenschaften:</div>
+                    <ul class="race-traits-list">
+                        <li>Große Anpassungsfähigkeit</li>
+                        <li>Starke soziale Strukturen</li>
+                        <li>Breites Berufsspektrum</li>
+                        <li>Neugier und Innovationskraft</li>
+                    </ul>
+                </div>
+                <button class="race-btn"
+                    onclick="showModal('Menschen sind die wohl bekannteste Rasse Aeonforges. Sie sind ehrgeizig, neugierig und können in jedem Bereich glänzen – ob als Herrscher, Forscher oder Abenteurer.', '<i class=\'fas fa-user\'></i>')">
+                    <i class="fas fa-info-circle"></i> Mehr erfahren
+                </button>
+            </div>
+            <!-- Beispiel: Elf -->
+            <div class="race-card" style="animation-delay:.22s;">
+                <img src="img/races/elf.png" alt="Elf Portrait" class="race-portrait">
+                <div class="race-title">Elf</div>
+                <div class="race-desc">
+                    Elfen sind für ihre Langlebigkeit, ihre tiefe Verbundenheit zur Natur und ihre magische Begabung
+                    bekannt. Sie leben meist in Wäldern oder abgeschiedenen Siedlungen und achten auf Harmonie mit ihrer
+                    Umgebung.
+                </div>
+                <div class="race-specs">
+                    <table class="race-specs-table">
+                        <tr>
+                            <th>Ø Alter</th>
+                            <td>80–400 Jahre</td>
+                        </tr>
+                        <tr>
+                            <th>Größe</th>
+                            <td>1,70–2,00 m</td>
+                        </tr>
+                        <tr>
+                            <th>Besonderheiten</th>
+                            <td>Magiebegabt, naturverbunden</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="race-traits">
+                    <div class="race-traits-title">Typische Eigenschaften:</div>
+                    <ul class="race-traits-list">
+                        <li>Hohe Intelligenz und Weisheit</li>
+                        <li>Gute Nachtsicht</li>
+                        <li>Empfänglich für Magie</li>
+                        <li>Eleganz und Geduld</li>
+                    </ul>
+                </div>
+                <button class="race-btn"
+                    onclick="showModal('Elfen sind Meister der Magie und leben im Einklang mit der Natur. Ihre Weisheit und ihr langes Leben machen sie zu geschätzten Beratern und mächtigen Verbündeten.', '<i class=\'fas fa-leaf\'></i>')">
+                    <i class="fas fa-info-circle"></i> Mehr erfahren
+                </button>
+            </div>
+            <!-- Beispiel: Zwerg -->
+            <div class="race-card" style="animation-delay:.34s;">
+                <img src="img/races/zwerg.png" alt="Zwerg Portrait" class="race-portrait">
+                <div class="race-title">Zwerg</div>
+                <div class="race-desc">
+                    Zwerge sind zäh, traditionsbewusst und hervorragende Handwerker. Sie leben meist unterirdisch oder
+                    in Gebirgen und sind für ihre Schmiedekunst und ihren Stolz bekannt.
+                </div>
+                <div class="race-specs">
+                    <table class="race-specs-table">
+                        <tr>
+                            <th>Ø Alter</th>
+                            <td>40–250 Jahre</td>
+                        </tr>
+                        <tr>
+                            <th>Größe</th>
+                            <td>1,30–1,50 m</td>
+                        </tr>
+                        <tr>
+                            <th>Besonderheiten</th>
+                            <td>Robust, meisterhafte Handwerker</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="race-traits">
+                    <div class="race-traits-title">Typische Eigenschaften:</div>
+                    <ul class="race-traits-list">
+                        <li>Hohe Widerstandskraft</li>
+                        <li>Starke Bindung an Familie und Clan</li>
+                        <li>Meister im Bergbau und Schmieden</li>
+                        <li>Sturheit und Loyalität</li>
+                    </ul>
+                </div>
+                <button class="race-btn"
+                    onclick="showModal('Zwerge sind für ihre Standhaftigkeit und ihre legendären Schmiedekünste berühmt. Sie verteidigen ihre Heimat mit Mut und sind treue Freunde – aber auch erbitterte Feinde.', '<i class=\'fas fa-hammer\'></i>')">
+                    <i class="fas fa-info-circle"></i> Mehr erfahren
+                </button>
+            </div>
+            <!-- Beispiel: Ork -->
+            <div class="race-card" style="animation-delay:.46s;">
+                <img src="img/races/ork.png" alt="Ork Portrait" class="race-portrait">
+                <div class="race-title">Ork</div>
+                <div class="race-desc">
+                    Orks sind kräftig, wild und stolz. Sie leben oft in Stämmen, sind für ihre Kampfkraft gefürchtet,
+                    aber auch für ihren Ehrenkodex und ihre Loyalität bekannt.
+                </div>
+                <div class="race-specs">
+                    <table class="race-specs-table">
+                        <tr>
+                            <th>Ø Alter</th>
+                            <td>18–60 Jahre</td>
+                        </tr>
+                        <tr>
+                            <th>Größe</th>
+                            <td>1,80–2,20 m</td>
+                        </tr>
+                        <tr>
+                            <th>Besonderheiten</th>
+                            <td>Sehr stark, widerstandsfähig</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="race-traits">
+                    <div class="race-traits-title">Typische Eigenschaften:</div>
+                    <ul class="race-traits-list">
+                        <li>Große körperliche Stärke</li>
+                        <li>Starker Gemeinschaftssinn</li>
+                        <li>Neigung zu Stammesritualen</li>
+                        <li>Ehrgefühl und Mut</li>
+                    </ul>
+                </div>
+                <button class="race-btn"
+                    onclick="showModal('Orks sind gefürchtete Krieger, aber auch stolze Stammesmitglieder mit einem ausgeprägten Sinn für Ehre. Sie kämpfen für ihre Sippe und ihre Ideale.', '<i class=\'fas fa-fist-raised\'></i>')">
+                    <i class="fas fa-info-circle"></i> Mehr erfahren
+                </button>
+            </div>
+            <div class="special-spacer">
+                <span class="spacer-line"></span>
+            </div>
+            <!-- Weitere Rassen können nach gleichem Muster ergänzt werden -->
+        </div>
+        <!-- Modal Popup -->
+        <div class="modal" id="modal" tabindex="-1" aria-modal="true" role="dialog" style="display:none;">
+            <div class="modal-content">
+                <span class="modal-close" id="modalClose" title="Schließen">&times;</span>
+                <div class="modal-icon" id="modalIcon"></div>
+                <div class="modal-message" id="modalMessage"></div>
+                <button class="modal-btn" id="modalOk" type="button">OK</button>
+            </div>
+        </div>
+        <!-- Floating "Back to Top" Button -->
+        <button id="backToTopBtn" title="Nach oben" aria-label="Nach oben scrollen">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+    </div>
+    <div class="features-modern-hero">
+        <div class="features-modern-title">
+            <i class="fas fa-sparkles"></i> Server-Features
+        </div>
+        <div class="features-modern-desc">
+            Entdecke die besonderen Features von Aeonforge.<br>
+            Von einzigartigem Roleplay bis zu epischen Events – hier findest du, was unseren Server ausmacht!
+        </div>
+    </div>
+    <section class="server-features-modern">
+        <div class="features-modern-list" id="featuresModernList">
+            <!-- Feature 1 -->
+            <div class="feature-modern-card">
+                <div class="feature-modern-img" style="background-image:url('img/features/roleplay.jpg');">
+                    <span class="feature-modern-icon"><i class="fas fa-theater-masks"></i></span>
+                </div>
+                <div class="feature-modern-content">
+                    <div class="feature-modern-title">Tiefes Roleplay</div>
+                    <div class="feature-modern-desc">
+                        Tauche ein in eine lebendige, mittelalterliche Welt mit einzigartigen Charakteren, Geschichten
+                        und Quests. Dein Handeln beeinflusst die Welt!
+                    </div>
+                </div>
+            </div>
+            <!-- Feature 2 -->
+            <div class="feature-modern-card">
+                <div class="feature-modern-img" style="background-image:url('img/features/building.jpg');">
+                    <span class="feature-modern-icon"><i class="fas fa-landmark"></i></span>
+                </div>
+                <div class="feature-modern-content">
+                    <div class="feature-modern-title">Epische Bauwerke</div>
+                    <div class="feature-modern-desc">
+                        Erkunde oder errichte monumentale Städte, Burgen und Dörfer – allein oder mit deiner Gilde.
+                        Kreativität kennt keine Grenzen!
+                    </div>
+                </div>
+            </div>
+            <!-- Feature 3 -->
+            <div class="feature-modern-card">
+                <div class="feature-modern-img" style="background-image:url('img/features/magic.jpg');">
+                    <span class="feature-modern-icon"><i class="fas fa-hat-wizard"></i></span>
+                </div>
+                <div class="feature-modern-content">
+                    <div class="feature-modern-title">Magie & Fähigkeiten</div>
+                    <div class="feature-modern-desc">
+                        Lerne mächtige Zauber, entdecke uralte Runen und entwickle deinen Charakter mit individuellen
+                        Fähigkeiten weiter.
+                    </div>
+                </div>
+            </div>
+            <!-- Feature 4 -->
+            <div class="feature-modern-card">
+                <div class="feature-modern-img" style="background-image:url('img/features/community.jpg');">
+                    <span class="feature-modern-icon"><i class="fas fa-users"></i></span>
+                </div>
+                <div class="feature-modern-content">
+                    <div class="feature-modern-title">Starke Community</div>
+                    <div class="feature-modern-desc">
+                        Werde Teil einer freundlichen, hilfsbereiten Community. Events, Turniere und gemeinsames
+                        Abenteuer warten auf dich!
+                    </div>
+                </div>
+            </div>
+            <!-- Feature 5 -->
+            <div class="feature-modern-card">
+                <div class="feature-modern-img" style="background-image:url('img/features/events.jpg');">
+                    <span class="feature-modern-icon"><i class="fas fa-fire"></i></span>
+                </div>
+                <div class="feature-modern-content">
+                    <div class="feature-modern-title">Regelmäßige Events</div>
+                    <div class="feature-modern-desc">
+                        Nimm an spannenden Events, Festen und Wettbewerben teil – von PvP-Turnieren bis zu Schatzjagden
+                        und Rollenspiel-Festen.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+                <div class="special-spacer">
+                <span class="spacer-line"></span>
+            </div>
+            <div class="team-hero">
+            <div class="team-title"><i class="fas fa-users-cog"></i> Das Aeonforge Team</div>
+            <div class="team-desc">
+                Lerne das Server-Team kennen! Hier findest du unsere Gründer, Admins, Moderatoren, Supporter und Helfer
+                – mit ihren Aufgabenbereichen und Minecraft-Skins.<br>
+                <span style="color:#d4af37;">Klicke auf einen Skin für mehr Infos!</span>
+            </div>
+        </div>
+    <section class="team-section">
+        <div class="team-hierarchy">
+            <!-- Gründer -->
+            <div class="team-group">
+                <div class="team-group-title founder"><i class="fas fa-crown"></i> Gründer</div>
+                <div class="team-group-list">
+                    <!-- NordicRacoon -->
+                    <div class="team-card" tabindex="0">
+                        <div class="team-skin small">
+                            <div class="skin-frame">
+                                <img src="https://mc-heads.net/body/NordicRacoon/90.png" alt="Skin von NordicRacoon">
+                            </div>
+                            <span class="team-skin-username">NordicRacoon</span>
+                        </div>
+                        <div class="team-info">
+                            <div class="team-role">Serverleitung, Technik</div>
+                            <div class="team-badges">
+                                <span class="team-badge dev">Dev-Team</span>
+                            </div>
+                            <div class="team-contact-row">
+                                <a href="mailto:nordicracoon@aeonforge.net" title="E-Mail"><i
+                                        class="fas fa-envelope"></i></a>
+                                <a href="https://discord.com/users/123456789" title="Discord" target="_blank"><i
+                                        class="ri-discord-line"></i></a>
+                            </div>
+                            <div class="team-extra-info">
+                                <b>Im Team seit:</b> 2024<br>
+                                <b>Lieblingsrasse:</b> Zwerg<br>
+                            </div>
+                            <div class="team-desc-short">
+                                Technische Leitung, Entwicklung, Konzept & Community, Webdesign
+                            </div>
+                        </div>
+                    </div>
+                    <!-- AELEXBEATZ -->
+                    <div class="team-card" tabindex="0">
+                        <div class="team-skin small">
+                            <div class="skin-frame">
+                                <img src="https://mc-heads.net/body/AELEXBEATZ/90.png" alt="Skin von AELEXBEATZ">
+                            </div>
+                            <span class="team-skin-username">AELEXBEATZ</span>
+                        </div>
+                        <div class="team-info">
+                            <div class="team-role">Serverleitung, Lore</div>
+                            <div class="team-badges">
+                                <span class="team-badge lore">Lore-Team</span>
+                            </div>
+                            <div class="team-contact-row">
+                                <a href="mailto:aelexbeatz@aeonforge.net" title="E-Mail"><i
+                                        class="fas fa-envelope"></i></a>
+                                <a href="https://discord.com/users/234567890" title="Discord" target="_blank"><i
+                                        class="ri-discord-line"></i></a>
+                            </div>
+                            <div class="team-extra-info">
+                                <b>Im Team seit:</b> 2024<br>
+                                <b>Lieblingsrasse:</b> Elf<br>
+                            </div>
+                            <div class="team-desc-short">
+                                Story, Lore, Rollenspiel-Events und Community-Management.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Administrator -->
+            <div class="team-group">
+                <div class="team-group-title admin"><i class="fas fa-user-shield"></i> Administrator</div>
+                <div class="team-group-list">
+                    <div class="team-card" tabindex="0">
+                        <div class="team-skin small">
+                            <div class="skin-frame">
+                                <img src="https://mc-heads.net/body/Zeitlos/90.png" alt="Skin von Zeitlos">
+                            </div>
+                            <span class="team-skin-username">Zeitlos</span>
+                        </div>
+                        <div class="team-info">
+                            <div class="team-role">Administration, Organisation</div>
+                            <div class="team-badges">
+                                <span class="team-badge dev">Dev-Team</span>
+                                <span class="team-badge builder">Builder</span>
+                            </div>
+                            <div class="team-contact-row">
+                                <a href="mailto:zeitlos@aeonforge.net" title="E-Mail"><i
+                                        class="fas fa-envelope"></i></a>
+                                <a href="https://discord.com/users/345678901" title="Discord" target="_blank"><i
+                                        class="ri-discord-line"></i></a>
+                            </div>
+                            <div class="team-extra-info">
+                                <b>Im Team seit:</b> 2025<br>
+                                <b>Lieblingsrasse:</b> Mensch<br>
+                                <b>Motto:</b> „Struktur schafft Freiheit.“
+                            </div>
+                            <div class="team-desc-short">
+                                Server-Organisation, technische Umsetzung, Bauleitung.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team-card" tabindex="0">
+                        <div class="team-skin small">
+                            <div class="skin-frame">
+                                <img src="https://mc-heads.net/body/Nezumi_X/90.png" alt="Skin von Nezumi_X">
+                            </div>
+                            <span class="team-skin-username">Nezumi_X</span>
+                        </div>
+                        <div class="team-info">
+                            <div class="team-role">Administration, Organisation</div>
+                            <div class="team-badges">
+                                <span class="team-badge dev">Dev-Team</span>
+                                <span class="team-badge builder">Builder</span>
+                            </div>
+                            <div class="team-contact-row">
+                                <a href="mailto:zeitlos@aeonforge.net" title="E-Mail"><i
+                                        class="fas fa-envelope"></i></a>
+                                <a href="https://discord.com/users/345678901" title="Discord" target="_blank"><i
+                                        class="ri-discord-line"></i></a>
+                            </div>
+                            <div class="team-extra-info">
+                                <b>Im Team seit:</b> 2025<br>
+                                <b>Lieblingsrasse:</b> Mensch<br>
+                                <b>Motto:</b> „Struktur schafft Freiheit.“
+                            </div>
+                            <div class="team-desc-short">
+                                Server-Organisation, technische Umsetzung, Bauleitung.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Moderator -->
+            <div class="team-group">
+                <div class="team-group-title mod"><i class="fas fa-user-gear"></i> Moderator</div>
+                <div class="team-group-list">
+                    <div class="team-card" tabindex="0">
+                        <div class="team-skin small">
+                            <div class="skin-frame">
+                                <img src="https://mc-heads.net/body/fiOnity/90.png" alt="Skin von fiOnity">
+                            </div>
+                            <span class="team-skin-username">fiOnity</span>
+                        </div>
+                        <div class="team-info">
+                            <div class="team-role">Moderation, Community</div>
+                            <div class="team-badges">
+                                <span class="team-badge lore">Lore-Team</span>
+                            </div>
+                            <div class="team-contact-row">
+                                <a href="mailto:fionity@aeonforge.net" title="E-Mail"><i
+                                        class="fas fa-envelope"></i></a>
+                                <a href="https://discord.com/users/456789012" title="Discord" target="_blank"><i
+                                        class="ri-discord-line"></i></a>
+                            </div>
+                            <div class="team-extra-info">
+                                <b>Im Team seit:</b> 2025<br>
+                                <b>Lieblingsrasse:</b> Ork<br>
+                                <b>Motto:</b> „Fairness für alle!“
+                            </div>
+                            <div class="team-desc-short">
+                                Community-Moderation, Lore-Events, Ansprechpartner für Spieler.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Supporter -->
+            <div class="team-group">
+                <div class="team-group-title supporter"><i class="fas fa-hands-helping"></i> Supporter</div>
+                <div class="team-group-list">
+                    <div class="team-card" tabindex="0">
+                        <div class="team-skin small">
+                            <div class="skin-frame">
+                                <img src="https://mc-heads.net/body/TestSpieler/90.png" alt="Skin von TestSpieler">
+                            </div>
+                            <span class="team-skin-username">TestSpieler</span>
+                        </div>
+                        <div class="team-info">
+                            <div class="team-role">Support, Hilfe</div>
+                            <div class="team-badges">
+                                <span class="team-badge builder">Builder</span>
+                            </div>
+                            <div class="team-contact-row">
+                                <a href="mailto:testspieler@aeonforge.net" title="E-Mail"><i
+                                        class="fas fa-envelope"></i></a>
+                                <a href="https://discord.com/users/567890123" title="Discord" target="_blank"><i
+                                        class="ri-discord-line"></i></a>
+                            </div>
+                            <div class="team-extra-info">
+                                <b>Im Team seit:</b> 2025<br>
+                                <b>Lieblingsrasse:</b> Zwerg<br>
+                                <b>Motto:</b> „Immer hilfsbereit!“
+                            </div>
+                            <div class="team-desc-short">
+                                Hilft neuen Spielern, beantwortet Fragen und unterstützt beim Bauen.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Helfer -->
+            <div class="team-group">
+                <div class="team-group-title helper"><i class="fas fa-user-plus"></i> Helfer</div>
+                <div class="team-group-list">
+                    <div class="team-card" tabindex="0">
+                        <div class="team-skin small">
+                            <div class="skin-frame">
+                                <img src="https://mc-heads.net/body/Slaypation1/90.png" alt="Skin von Slaypation1">
+                            </div>
+                            <span class="team-skin-username">Slaypation1</span>
+                        </div>
+                        <div class="team-info">
+                            <div class="team-role">Helfer, Community</div>
+                            <div class="team-badges">
+                                <span class="team-badge builder">Builder</span>
+                            </div>
+                            <div class="team-contact-row">
+                                <a href="mailto:Slaypation1@aeonforge.net" title="E-Mail"><i
+                                        class="fas fa-envelope"></i></a>
+                                <a href="https://discord.com/users/678901234" title="Discord" target="_blank"><i
+                                        class="ri-discord-line"></i></a>
+                            </div>
+                            <div class="team-extra-info">
+                                <b>Im Team seit:</b> 2025<br>
+                                <b>Lieblingsrasse:</b> Ork<br>
+                                <b>Motto:</b> „Gemeinsam stark!“
+                            </div>
+                            <div class="team-desc-short">
+                                Unterstützt das Team bei Events, Bauprojekten und im Chat.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team-card" tabindex="0">
+                        <div class="team-skin small">
+                            <div class="skin-frame">
+                                <img src="https://mc-heads.net/body/VogleeSpielt/90.png" alt="Skin von VogleeSpielt">
+                            </div>
+                            <span class="team-skin-username">VogleeSpielt</span>
+                        </div>
+                        <div class="team-info">
+                            <div class="team-role">Helfer, Community</div>
+                            <div class="team-badges">
+                                <span class="team-badge builder">Builder</span>
+                            </div>
+                            <div class="team-contact-row">
+                                <a href="mailto:VogleeSpielt@aeonforge.net" title="E-Mail"><i
+                                        class="fas fa-envelope"></i></a>
+                                <a href="https://discord.com/users/678901234" title="Discord" target="_blank"><i
+                                        class="ri-discord-line"></i></a>
+                            </div>
+                            <div class="team-extra-info">
+                                <b>Im Team seit:</b> 2025<br>
+                                <b>Lieblingsrasse:</b> Ork<br>
+                                <b>Motto:</b> „Gemeinsam stark!“
+                            </div>
+                            <div class="team-desc-short">
+                                Unterstützt das Team bei Events, Bauprojekten und im Chat.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team-card" tabindex="0">
+                        <div class="team-skin small">
+                            <div class="skin-frame">
+                                <img src="https://mc-heads.net/body/ZeusRonnok/90.png" alt="Skin von ZeusRonnok">
+                            </div>
+                            <span class="team-skin-username">ZeusRonnok</span>
+                        </div>
+                        <div class="team-info">
+                            <div class="team-role">Helfer, Community</div>
+                            <div class="team-badges">
+                                <span class="team-badge builder">Builder</span>
+                            </div>
+                            <div class="team-contact-row">
+                                <a href="mailto:slaypotion1@aeonforge.net" title="E-Mail"><i
+                                        class="fas fa-envelope"></i></a>
+                                <a href="https://discord.com/users/678901234" title="Discord" target="_blank"><i
+                                        class="ri-discord-line"></i></a>
+                            </div>
+                            <div class="team-extra-info">
+                                <b>Im Team seit:</b> 2025<br>
+                                <b>Lieblingsrasse:</b> Ork<br>
+                                <b>Motto:</b> „Gemeinsam stark!“
+                            </div>
+                            <div class="team-desc-short">
+                                Unterstützt das Team bei Events, Bauprojekten und im Chat.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+                <div class="special-spacer">
+                <span class="spacer-line"></span>
+            </div>
+    <div class="skin-modal-bg" id="skinModalBg" tabindex="-1" aria-modal="true" role="dialog" style="display:none;">
+        <div class="skin-modal-content">
+            <button class="skin-modal-close" id="skinModalClose" title="Schließen">&times;</button>
+            <img src="" alt="Skin Zoom" class="skin-modal-img" id="skinModalImg">
+            <div class="skin-modal-username" id="skinModalUsername"></div>
+        </div>
+    </div>
+        <footer class="epic-footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="mailto:kontakt@aeonforge-network.net"><i class="fas fa-envelope"></i> Kontakt</a>
+                <a href="impressum.html"><i class="fas fa-balance-scale"></i> Impressum</a>
+            </div>
+            <div class="footer-text">
+                © 2025 Aeonforge Network – Ein Minecraft Community-Projekt. Nicht offiziell von Mojang/Microsoft
+                unterstützt.
+            </div>
+        </div>
+    </footer>
+    <script src="scripts/script.js"></script>
+</body>
+
+</html>

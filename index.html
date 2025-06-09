@@ -2,355 +2,287 @@
 <html lang="de">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NordicRacoon – Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-    rel="stylesheet">
-  <link rel="icon" href="images/favicon.ico" type="image/x-icon">
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Æonforge Empire | Startseite</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Marcellus&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="icon" href="img/favicon.png" type="image/png">
+
 </head>
 
 <body>
-  <div class="bg-animation"></div>
+    <div class="main-content">
+        <nav class="epic-navbar">
+            <div class="navbar-container">
+                <a href="#" class="navbar-logo">
+                    <img src="img/banner.png" alt="Aeonforge Logo">
+                    Aeonforge
+                </a>
+                <ul class="navbar-links">
+                    <li><a href="index.html"><i class="fas fa-home"></i> Start</a></li>
+                    <li><a href="rules.html"><i class="fas fa-gavel"></i> Regelwerk</a></li>
 
-  <!-- Floating Navigation -->
-  <nav class="floating-nav" id="floatingNav" style="display: flex; align-items: center; padding: 0.8rem 2rem;">
-    <a href="#" class="nav-logo">
-      <img src="images/logo.svg" alt="Logo" style="height: 28px;">
-    </a>
+                    <li class="navbar-dropdown">
+                        <a href="#" class="dropdown-toggle"><i class="fas fa-server"></i> Der Server <i
+                                class="fas fa-caret-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="howtojoin.html"><i class="ri-sword-fill"></i> How to Join</a></li>
+                            <li><a href="wiki.html"><i class="fas fa-book"></i> Wiki</a></li>
+                            <li><a href="news.html"><i class="fas fa-newspaper"></i> News</a></li>
+                            <li><a href="roadmap.html"><i class="fas fa-map"></i> Roadmap</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="https://discord.gg/Awg9TdRdtw" target="_blank"><i class="ri-discord-line"></i>
+                            Discord</a></li>
+                    <li><a href="https://aeonforge-network.net/forum/" target="_blank"><i class="fas fa-scroll"></i>
+                            Forum</a></li>
+                </ul>
+                <div class="navbar-toggle" id="navbarToggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </nav>
 
-    <div style="display: flex; gap: 1.5rem; justify-content: center; flex-grow: 1;">
-      <a href="#about" data-section="about">Über mich</a>
-      <a href="#projects" data-section="projects">Projekte</a>
-      <a href="#skills" data-section="skills">Skills</a>
-      <a href="#contact" data-section="contact">Kontakt</a>
+        <div class="hero-banner">
+            <!-- Partikel-System -->
+            <div class="particles" id="particles"></div>
+
+            <!-- Ornamente -->
+            <div class="ornament top-left">
+                <i class="fas fa-dragon"></i>
+            </div>
+            <div class="ornament top-right">
+                <i class="fas fa-crown"></i>
+            </div>
+            <div class="ornament bottom-left">
+                <i class="fas fa-chess-rook"></i>
+            </div>
+            <div class="ornament bottom-right">
+                <i class="fas fa-gem"></i>
+            </div>
+
+            <div class="hero-content">
+                <div class="logo-container">
+                    <a href="https://aeonforge-network.net/forum/" target="_blank" rel="noopener">
+                        <img src="https://nx73791.your-storageshare.de/apps/files_sharing/publicpreview/PHeXSswsSj2Anw9?file=/&fileId=8587&x=1920&y=1080&a=true&etag=67f1cd0cdcab170055aba0bdf69697ee"
+                            alt="Logo" class="hero-logo" />
+                    </a>
+                </div>
+                <!-- Schwebende Runen -->
+                <div class="floating-runes">
+                    <div class="rune">Æ</div>
+                    <div class="rune">O</div>
+                    <div class="rune">N</div>
+                    <div class="rune">F</div>
+                    <div class="rune">O</div>
+                    <div class="rune">R</div>
+                    <div class="rune">G</div>
+                    <div class="rune">E</div>
+                    <div class="rune"></div>
+                    <div class="rune">E</div>
+                    <div class="rune">M</div>
+                    <div class="rune">P</div>
+                    <div class="rune">I</div>
+                    <div class="rune">R</div>
+                    <div class="rune">E</div>
+                </div>
+                <h1 class="hero-title">Willkommen im Reich der Legenden</h1>
+                <p class="hero-subtitle">Wo Helden geboren werden und Abenteuer beginnen</p>
+                <p class="hero-description">
+                    Tritt ein in eine Welt voller Magie, Ehre und epischer Schlachten.
+                    Hier vereinen sich mutige Krieger, weise Magier und geschickte Schurken,
+                    um gemeinsam Legenden zu schreiben, die durch die Zeitalter widerhallen werden.
+                    Dein Schicksal wartet – welchen Pfad wirst du wählen?
+                </p>
+
+                <div class="hero-actions">
+                    <a href="#" class="hero-btn" onclick="startAdventure(event)">
+                        <i class="ri-sword-line"></i>
+                        Abenteuer Beginnen
+                    </a>
+                    <a href="https://discord.gg/Awg9TdRdtw" target="_blank" class="hero-btn discord-btn"
+                        onclick="createClickEffect(event.clientX, event.clientY)">
+                        <i class="ri-discord-line"></i>
+                        Discord Beitreten
+                    </a>
+                </div>
+
+                <div class="hero-icons">
+                    <div class="icon-container" onclick="activateSkill(event, 'defense')">
+                        <i class="hero-icon fas fa-shield-alt"></i>
+                        <div class="icon-tooltip">Verteidigung</div>
+                    </div>
+                    <div class="icon-container" onclick="activateSkill(event, 'magic')">
+                        <i class="hero-icon ri-magic-line"></i>
+                        <div class="icon-tooltip">Magie</div>
+                    </div>
+                    <div class="icon-container" onclick="activateSkill(event, 'craft')">
+                        <i class="hero-icon ri-hammer-line"></i>
+                        <div class="icon-tooltip">Handwerk</div>
+                    </div>
+                    <div class="icon-container" onclick="activateSkill(event, 'treasure')">
+                        <i class="hero-icon fa-regular fa-gem"></i>
+                        <div class="icon-tooltip">Schätze</div>
+                    </div>
+                    <div class="icon-container" onclick="activateSkill(event, 'wisdom')">
+                        <i class="hero-icon fas fa-scroll"></i>
+                        <div class="icon-tooltip">Weisheit</div>
+                    </div>
+                </div>
+
+                <div class="special-spacer">
+                    <span class="spacer-line"></span>
+                </div>
+
+                <!-- Server Trailer Feature -->
+                <div class="server-trailer-section">
+                    <div class="server-trailer-title">
+                        <i class="fas fa-video"></i> Server Trailer
+                    </div>
+                    <div class="server-trailer-video">
+                        <iframe width="100%" height="315"
+                            src="https://www.youtube.com/embed/B9iFpt1tKxU?si=nM6YMceEv2U7wN81"
+                            title="Aeonforge Server Trailer"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div class="special-spacer">
+                    <span class="spacer-line"></span>
+                </div>
+                <!-- Feature Grid Overview -->
+                <div class="feature-grid-title">
+                    <i class="fas fa-th-large"></i> Server-Features im Überblick
+                </div>
+                <div class="feature-grid">
+                    <div class="feature-card"
+                        onclick="showFeaturePopup('Riesige Fantasy-Welt', 'Erkunde eine handgebaute, riesige Open-World voller Geheimnisse, Dungeons und einzigartiger Biome. <br><br><i class=&quot;fas fa-globe-europe fa-2x&quot; style=&quot;color:#d4af37;&quot;></i>')">
+                        <i class="fas fa-globe-europe feature-icon"></i>
+                        <div class="feature-label">Riesige Welt</div>
+                    </div>
+                    <div class="feature-card"
+                        onclick="showFeaturePopup('Magiesystem', 'Nutze ein einzigartiges Magiesystem mit Zaubersprüchen, Runen und magischen Artefakten.<br><br><i class=&quot;ri-magic-line fa-2x&quot; style=&quot;color:#d4af37;&quot;></i>')">
+                        <i class="ri-magic-line feature-icon"></i>
+                        <div class="feature-label">Magie</div>
+                    </div>
+                    <div class="feature-card"
+                        onclick="showFeaturePopup('Gilden & PvP', 'Schließe dich einer Gilde an, kämpfe um Ruhm und Ehre in epischen PvP-Schlachten.<br><br><i class=&quot;fas fa-users fa-2x&quot; style=&quot;color:#d4af37;&quot;></i>')">
+                        <i class="fas fa-users feature-icon"></i>
+                        <div class="feature-label">Gilden & PvP</div>
+                    </div>
+                    <div class="feature-card"
+                        onclick="showFeaturePopup('Wirtschaft & Handel', 'Baue dein Vermögen auf, handle mit anderen Spielern und dominiere den Markt.<br><br><i class=&quot;fas fa-coins fa-2x&quot; style=&quot;color:#d4af37;&quot;></i>')">
+                        <i class="fas fa-coins feature-icon"></i>
+                        <div class="feature-label">Wirtschaft</div>
+                    </div>
+                    <div class="feature-card"
+                        onclick="showFeaturePopup('Quests & Lore', 'Erlebe spannende Quests und entdecke die tiefgründige Hintergrundgeschichte von Aeonforge.<br><br><i class=&quot;fas fa-scroll fa-2x&quot; style=&quot;color:#d4af37;&quot;></i>')">
+                        <i class="fas fa-scroll feature-icon"></i>
+                        <div class="feature-label">Quests & Lore</div>
+                    </div>
+                    <div class="feature-card"
+                        onclick="showFeaturePopup('Events & Community', 'Nimm an regelmäßigen Events teil und werde Teil einer aktiven, freundlichen Community.<br><br><i class=&quot;fas fa-calendar-star fa-2x&quot; style=&quot;color:#d4af37;&quot;></i>')">
+                        <i class="fas fa-calendar-day feature-icon"></i>
+                        <div class="feature-label">Events</div>
+                    </div>
+                </div>
+                <div class="special-spacer">
+                    <span class="spacer-line"></span>
+                </div>
+                <div class="faq-container">
+                    <div class="faq-title">
+                        <i class="fas fa-question-circle"></i> FAQ – Häufige Fragen
+                    </div>
+                    <span class="faq-ornament"><i class="fas fa-dragon"></i></span>
+                    <div class="faq-list">
+                        <div class="faq-item">
+                            <div class="faq-question"><i class="fas fa-caret-right"></i> Welche Minecraft-Version wird
+                                benötigt?
+                            </div>
+                            <div class="faq-answer">Du benötigst Minecraft Java Edition Version <b>1.20.x</b>. Ältere
+                                oder
+                                Bedrock-Versionen werden nicht unterstützt.</div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question"><i class="fas fa-caret-right"></i> Ist der Server kostenlos?</div>
+                            <div class="faq-answer">Ja, das Spielen auf Aeonforge ist komplett kostenlos.</div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question"><i class="fas fa-caret-right"></i> Wie kann ich mitspielen?</div>
+                            <div class="faq-answer">Alle Infos findest du unter <a href="howtojoin.html">How to
+                                    Join</a>. Du
+                                brauchst einen Discord-Account und musst die Regeln akzeptieren.</div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question"><i class="fas fa-caret-right"></i> Gibt es ein Whitelist-System?
+                            </div>
+                            <div class="faq-answer">Ja, du musst dich auf unserem Discord-Server verifizieren, um auf
+                                die
+                                Whitelist zu kommen.</div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question"><i class="fas fa-caret-right"></i> Welche Mods sind erlaubt?</div>
+                            <div class="faq-answer">Erlaubt sind reine Optik-Mods wie Optifine, Shader, Minimap (ohne
+                                Radar)
+                                und HUD-Anpassungen. Gameplay-verändernde Mods sind verboten.</div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question"><i class="fas fa-caret-right"></i> Gibt es Roleplay-Pflicht?</div>
+                            <div class="faq-answer">Ja, Aeonforge ist ein Mittelalter/Fantasy-Roleplay-Server. Du
+                                solltest
+                                bereit sein, dich auf RP einzulassen.</div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question"><i class="fas fa-caret-right"></i> Wo finde ich die Regeln?</div>
+                            <div class="faq-answer">Das Regelwerk findest du <a href="rules.html">hier</a>.</div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question"><i class="fas fa-caret-right"></i> Wie kann ich das Team
+                                kontaktieren?
+                            </div>
+                            <div class="faq-answer">Am besten über <a href="https://discord.gg/your-discord-invite"
+                                    target="_blank">Discord</a> oder das <a href="kontakt.html">Kontaktformular</a>.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </div>
 
-    <div style="display: flex; gap: 0.5rem; margin-left: auto;">
-      <a href="https://nordicracoon.gitbook.io" class="nav-icon-link" title="Docs">📘</a>
-      <a href="https://discord.gg/Y2ems85X7p" class="nav-icon-link" title="Discord">
-        <img src="images/discord.svg" alt="Discord-Logo">
-      </a>
-    </div>
-  </nav>
-
-  <header>
-    <div class="header-content">
-      <h1 class="logo">NordicRacoon</h1>
-      <p class="tagline">Developer · Grafiker · Linux Enthusiast</p>
+    <!-- Modal direkt unter body -->
+    <div class="modal" id="modal" tabindex="-1" aria-modal="true" role="dialog" style="display:none;">
+        <div class="modal-content">
+            <span class="modal-close" id="modalClose" title="Schließen">&times;</span>
+            <div class="modal-icon" id="modalIcon"></div>
+            <div class="modal-message" id="modalMessage"></div>
+            <button class="modal-btn" id="modalOk" type="button">OK</button>
+        </div>
     </div>
 
-    <nav class="header-nav-modern"
-      style="display: flex; align-items: center; justify-content: space-between; padding: 0.8rem 5rem;">
-      <div style="flex: 1;"></div>
+    <!-- Back to Top Button direkt unter body -->
+    <button id="backToTopBtn" title="Nach oben" aria-label="Nach oben scrollen">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
-      <div style="flex: 1; display: flex; justify-content: center; gap: 1rem;">
-        <a href="#about">Über mich</a>
-        <a href="#projects">Projekte</a>
-        <a href="#skills">Skills</a>
-        <a href="#contact">Kontakt</a>
-      </div>
-
-      <div style="flex: 1; display: flex; justify-content: flex-end; gap: 1.2rem;">
-        <a href="https://nordicracoon.gitbook.io" class="nav-icon-link" title="Docs">📘</a>
-        <a href="https://discord.gg/Y2ems85X7p" class="nav-icon-link" title="Discord">
-          <img src="images/discord.svg" alt="Discord-Logo">
-        </a>
-      </div>
-    </nav>
-  </header>
-
-  <main>
-    <section id="about" class="about-section">
-      <div class="logo-container">
-        <div class="logo-placeholder" id="logoContainer">
-          <div class="logo-fallback">NR</div>
+    <footer class="epic-footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="mailto:kontakt@aeonforge-network.net"><i class="fas fa-envelope"></i> Kontakt</a>
+                <a href="impressum.html"><i class="fas fa-balance-scale"></i> Impressum</a>
+            </div>
+            <div class="footer-text">
+                © 2025 Aeonforge Network – Ein Minecraft Community-Projekt. Nicht offiziell von Mojang/Microsoft
+                unterstützt.
+            </div>
         </div>
-      </div>
-      <div class="button-row">
-        <a href="blog.html" class="project-link">Blog →</a>
-        <a href="galerie.html" class="project-link">Galerie →</a>
-      </div>
-      <h2>Über mich</h2>
-      <div class="about-text">
-        Ich bin NordicRacoon – ein leidenschaftlicher Entwickler mit Fokus auf moderne Webentwicklung, Grafikdesign,
-        Gamescripting (z. B. für FiveM & Minecraft) und Serveradministration. Ich liebe es, Systeme zu automatisieren,
-        mit Servern zu arbeiten und kreative Lösungen für technische Herausforderungen zu finden.
-        Mit mehrjähriger Erfahrung in der Entwicklung maßgeschneiderter Lösungen bringe ich Ideen zum Leben.
-      </div>
-    </section>
-
-    <section id="projects">
-      <h2>Projekte</h2>
-      <div class="projects-grid">
-        <div class="project">
-          <div class="project-header">
-            <span class="project-icon">Æ</span>
-            <h3>Æonforge Empire</h3>
-          </div>
-          <p>Ein Mittelalterlicher Fantasy Minecraft Roleplay Server mit Quests, Custom Items, Custom Bossen und vielen
-            weiteren Besonderheiten.</p>
-          <a href="https://aeonforge-network.net" target="_blank" class="project-link">
-            Æonforge Forum →
-          </a>
-        </div>
-
-        <div class="project">
-          <div class="project-header">
-            <span class="project-icon">
-              <img src="images/minecraft.png" alt="Minecraft-Logo">
-            </span>
-            <h3>Minecraft Plugins</h3>
-          </div>
-          <p>Spigot/Paper-Plugins Konfiguration für Minecraft Server, ItemsAdder-Anpassungen und custom
-            Gameplay-Mechaniken für einzigartige Servererlebnisse.</p>
-          <a href="#" class="project-link">
-            Mehr erfahren →
-          </a>
-        </div>
-
-        <div class="project">
-          <div class="project-header">
-            <span class="project-icon">
-              <img src="images/linux.png" alt="Linux-Logo">
-            </span>
-            <h3>Linux & Server Tools</h3>
-          </div>
-          <p>Setup von Dashboards, Monitoring-Lösungen, eigene BookStack-Instanzen und Automatisierungstools für
-            effiziente Serveradministration.</p>
-          <a href="#" class="project-link">
-            Details ansehen →
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <section id="skills">
-      <h2>Skills & Technologien</h2>
-      <div class="skills">
-        <span class="skill">JavaScript</span>
-        <span class="skill">Lua</span>
-        <span class="skill">Java</span>
-        <span class="skill">CSS</span>
-        <span class="skill">HTML</span>
-        <span class="skill">Linux</span>
-        <span class="skill">Docker</span>
-        <span class="skill">MySQL</span>
-        <span class="skill">Adobe Photoshop</span>
-        <span class="skill">Adobe Illustrator</span>
-        <span class="skill">Aseprite</span>
-        <span class="skill">FiveM</span>
-        <span class="skill">Minecraft</span>
-        <span class="skill">Server Administration</span>
-      </div>
-    </section>
-
-    <section id="contact">
-      <h2>Kontakt</h2>
-      <p style="color: var(--text-secondary); margin-bottom: 2rem;">
-        Du hast ein spannendes Projekt oder möchtest zusammenarbeiten? Lass uns in Kontakt treten!
-      </p>
-      <div class="contact-grid">
-        <div class="contact-item">
-          <div class="contact-icon">
-            <img src="images/github.svg" alt="GitHub-Logo">
-          </div>
-          <div class="contact-info">
-            <h3>GitHub</h3>
-            <a href="https://github.com/NordicRacoon" target="_blank">@NordicRacoon</a>
-          </div>
-        </div>
-
-        <div class="contact-item">
-          <div class="contact-icon">
-            <img src="images/mail.png" alt="Mail-Logo">
-          </div>
-          <div class="contact-info">
-            <h3>E-Mail</h3>
-            <span style="color: var(--text-secondary);">nordicracoon@proton.me</span>
-          </div>
-        </div>
-
-        <div class="contact-item">
-          <div class="contact-icon">
-            <img src="images/discord.svg" alt="Discord-Logo">
-          </div>
-          <div class="contact-info">
-            <h3>Discord</h3>
-            <span style="color: var(--text-secondary);">NordicRacoon</span>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <button id="backToTop" aria-label="Zurück zum Anfang">↑</button>
-
-  <footer>
-    &copy; ᴍᴀᴅᴇ ᴡɪᴛʜ ♥ ʙʏ ɴᴏʀᴅɪᴄʀᴀᴄᴏᴏɴ • 2025 • All Rights Reserved
-  </footer>
-
-  <script>
-    // Logo loading functionality
-    function loadLogo() {
-      const logoContainer = document.getElementById('logoContainer');
-      if (!logoContainer) return;
-      
-      const logoFormats = ['logo.png', 'logo.jpg', 'logo.jpeg', 'logo.svg', 'logo.webp'];
-      let logoLoaded = false;
-
-      logoFormats.forEach(format => {
-        if (logoLoaded) return;
-
-        const img = new Image();
-        img.onload = function () {
-          if (!logoLoaded) {
-            logoLoaded = true;
-            logoContainer.innerHTML = `<img src="images/${format}" alt="NordicRacoon Logo" class="logo-image">`;
-          }
-        };
-        img.onerror = function () {
-          // Logo not found, keep fallback
-        };
-        img.src = `images/${format}`;
-      });
-    }
-
-    // Load logo when page loads
-    window.addEventListener('load', loadLogo);
-
-    // Floating navigation functionality
-    const floatingNav = document.getElementById('floatingNav');
-    const navLinks = floatingNav ? floatingNav.querySelectorAll('a[data-section]') : [];
-    let currentSection = '';
-
-    // Throttle function for performance
-    function throttle(func, wait) {
-      let timeout;
-      return function executedFunction(...args) {
-        const later = () => {
-          clearTimeout(timeout);
-          func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-      };
-    }
-
-    // Show/hide floating nav on scroll
-    const handleScroll = throttle(() => {
-      const scrollY = window.scrollY;
-      const header = document.querySelector('header');
-      const headerHeight = header ? header.offsetHeight : 0;
-
-      if (floatingNav) {
-        if (scrollY > headerHeight + 100) {
-          floatingNav.classList.add('visible');
-        } else {
-          floatingNav.classList.remove('visible');
-        }
-      }
-
-      // Update active nav link
-      updateActiveNavLink();
-
-      // Back to top button
-      const backToTop = document.getElementById('backToTop');
-      if (backToTop) {
-        if (scrollY > 300) {
-          backToTop.classList.add('visible');
-        } else {
-          backToTop.classList.remove('visible');
-        }
-      }
-
-      // Parallax effect for background
-      const bgAnimation = document.querySelector('.bg-animation');
-      if (bgAnimation) {
-        const rate = scrollY * -0.5;
-        bgAnimation.style.transform = `translateY(${rate}px)`;
-      }
-    }, 16);
-
-    window.addEventListener('scroll', handleScroll);
-
-    // Update active navigation link based on scroll position
-    function updateActiveNavLink() {
-      const sections = document.querySelectorAll('section[id]');
-      const scrollY = window.scrollY + 150;
-
-      sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.offsetHeight;
-        const sectionId = section.getAttribute('id');
-
-        if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
-          if (currentSection !== sectionId) {
-            currentSection = sectionId;
-
-            // Remove active class from all links
-            navLinks.forEach(link => link.classList.remove('active'));
-
-            // Add active class to current section link
-            const activeLink = floatingNav ? floatingNav.querySelector(`a[data-section="${sectionId}"]`) : null;
-            if (activeLink) {
-              activeLink.classList.add('active');
-            }
-          }
-        }
-      });
-    }
-
-    // Back to top functionality
-    const backToTop = document.getElementById('backToTop');
-    if (backToTop) {
-      backToTop.addEventListener('click', () => {
-        window.scrollTo({
-          top: 0,
-          behavior: 'smooth'
-        });
-      });
-    }
-
-    // Smooth scrolling for all navigation links
-    document.querySelectorAll('nav a[href^="#"], .floating-nav a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href');
-        if (targetId === '#') return;
-
-        const target = document.querySelector(targetId);
-        if (target) {
-          const headerOffset = 100;
-          const elementPosition = target.offsetTop;
-          const offsetPosition = elementPosition - headerOffset;
-
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: 'smooth'
-          });
-        }
-      });
-    });
-
-    // Add scroll animation observer
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.animationPlayState = 'running';
-        }
-      });
-    }, observerOptions);
-
-    document.querySelectorAll('section').forEach(section => {
-      observer.observe(section);
-    });
-  </script>
+    </footer>
+    <script src="scripts/script.js"></script>
 </body>
+
 </html>

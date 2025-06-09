@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontakt | Aeonforge Network</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Marcellus&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="icon" href="img/favicon.png" type="image/png">
+    <style>
+        .contact-container {
+            max-width: 600px;
+            margin: 60px auto 40px auto;
+            background: linear-gradient(135deg, rgba(45, 40, 37, 0.97) 0%, rgba(26, 22, 20, 0.99) 100%);
+            border-radius: 22px;
+            box-shadow: 0 6px 32px #000b, 0 0 0 4px #d4af3720;
+            padding: 48px 24px 36px 24px;
+            color: #fffbe6;
+            font-family: 'Marcellus', serif;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2.2rem;
+            color: #d4af37;
+            margin-bottom: 18px;
+            text-align: center;
+            letter-spacing: 2px;
+        }
+
+        .contact-form label {
+            display: block;
+            margin-bottom: 6px;
+            color: #d4af37;
+            font-weight: 600;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 18px;
+            border-radius: 8px;
+            border: 1px solid #d4af37;
+            background: #1a1614;
+            color: #fffbe6;
+            font-size: 1rem;
+            font-family: 'Marcellus', serif;
+        }
+
+        .contact-form textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .contact-form button {
+            background: linear-gradient(135deg, #d4af37 0%, #b8941f 100%);
+            color: #1a1614;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 36px;
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+            box-shadow: 0 2px 10px #0004;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .contact-form button:hover {
+            background: linear-gradient(135deg, #b8941f 0%, #d4af37 100%);
+            color: #fff;
+        }
+
+        .contact-info {
+            margin-top: 24px;
+            text-align: center;
+            color: #fffbe6cc;
+            font-size: 1rem;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 32px;
+            color: #d4af37;
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            text-decoration: none;
+            border-bottom: 1px solid #d4af37;
+            transition: color 0.2s, border 0.2s;
+        }
+
+        .back-link:hover {
+            color: #fffbe6;
+            border-bottom: 1px solid #fffbe6;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-content">
+        <nav class="epic-navbar">
+            <div class="navbar-container">
+                <a href="#" class="navbar-logo">
+                    <img src="img/banner.png" alt="Aeonforge Logo">
+                    Aeonforge
+                </a>
+                <ul class="navbar-links">
+                    <li><a href="index.html"><i class="fas fa-home"></i> Start</a></li>
+                    <li><a href="rules.html"><i class="fas fa-gavel"></i> Regelwerk</a></li>
+                    <li class="navbar-dropdown">
+                        <a href="#" class="dropdown-toggle"><i class="fas fa-server"></i> Der Server <i
+                                class="fas fa-caret-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="howtojoin.html"><i class="ri-sword-fill"></i> How to Join</a></li>
+                            <li><a href="wiki.html"><i class="fas fa-book"></i> Wiki</a></li>
+                            <li><a href="news.html"><i class="fas fa-newspaper"></i> News</a></li>
+                            <li><a href="roadmap.html"><i class="fas fa-map"></i> Roadmap</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="https://discord.gg/Awg9TdRdtw" target="_blank"><i class="ri-discord-line"></i>
+                            Discord</a></li>
+                    <li><a href="https://aeonforge-network.net/forum/" target="_blank"><i class="fas fa-scroll"></i>
+                            Forum</a></li>
+                </ul>
+                <div class="navbar-toggle" id="navbarToggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </nav>
+
+        <div class="contact-container">
+            <div class="contact-title"><i class="fas fa-envelope"></i> Kontakt</div>
+            <form class="contact-form" action="mailto:kontakt@aeonforge-network.net" method="POST" enctype="text/plain">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
+                <label for="email">E-Mail</label>
+                <input type="email" id="email" name="email" required>
+                <label for="message">Nachricht</label>
+                <textarea id="message" name="message" required></textarea>
+                <button type="submit"><i class="fas fa-paper-plane"></i> Absenden</button>
+            </form>
+            <div class="contact-info">
+                Oder schreibe uns direkt an: <a
+                    href="mailto:kontakt@aeonforge-network.net">kontakt@aeonforge-network.net</a>
+            </div>
+            <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Zurück zur Startseite</a>
+        </div>
+
+        <div class="modal" id="modal" tabindex="-1" aria-modal="true" role="dialog" style="display:none;">
+            <div class="modal-content">
+                <span class="modal-close" id="modalClose" title="Schließen">&times;</span>
+                <div class="modal-icon" id="modalIcon"></div>
+                <div class="modal-message" id="modalMessage"></div>
+                <button class="modal-btn" id="modalOk" type="button">OK</button>
+            </div>
+        </div>
+
+        <!-- Floating "Back to Top" Button -->
+        <button id="backToTopBtn" title="Nach oben" aria-label="Nach oben scrollen">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+    </div>
+
+    <footer class="epic-footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="mailto:kontakt@aeonforge-network.net"><i class="fas fa-envelope"></i> Kontakt</a>
+                <a href="impressum.html"><i class="fas fa-balance-scale"></i> Impressum</a>
+            </div>
+            <div class="footer-text">
+                © 2025 Aeonforge Network – Ein Minecraft Community-Projekt. Nicht offiziell von Mojang/Microsoft
+                unterstützt.
+            </div>
+        </div>
+    </footer>
+    <script src="scripts/script.js"></script>
+</body>
+
+</html>
