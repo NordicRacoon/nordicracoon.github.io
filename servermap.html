@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Server Map | Æonforge Network</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Marcellus&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="icon" href="img/favicon.png" type="image/png">
+    <style>
+        body {
+            background: linear-gradient(120deg, #181513 70%, #2d2825 100%);
+            min-height: 100vh;
+        }
+        .map-header {
+            color: #d4af37;
+            font-family: 'Cinzel', serif;
+            font-size: 2.3rem;
+            text-align: center;
+            margin-top: 20px;
+            padding: 38px 0 18px 0;
+            letter-spacing: 1.5px;
+            text-shadow: 0 2px 24px #000a, 0 0 8px #d4af3740;
+            position: relative;
+        }
+        .map-header .fa-map-location-dot {
+            margin-right: 12px;
+            color: #fffbe6;
+            filter: drop-shadow(0 0 8px #d4af37cc);
+        }
+        .map-desc {
+            text-align: center;
+            color: #fffbe6cc;
+            font-size: 1.18rem;
+            margin-top: 40px;
+            margin-bottom: 28px;
+            font-family: 'Marcellus', serif;
+            text-shadow: 0 1px 8px #0004;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .map-iframe-container {
+            flex: 1 1 auto;
+            display: flex;
+            justify-content: center;
+            align-items: stretch;
+            min-height: 60vh;
+            margin-bottom: 32px;
+        }
+        .map-iframe {
+            width: 98vw;
+            max-width: 1400px;
+            height: 80vh;
+            border: none;
+            box-shadow: 0 8px 48px #000b, 0 0 0 4px #d4af3720;
+            border-radius: 22px;
+            background: #222;
+            transition: box-shadow 0.3s, border-radius 0.3s;
+            outline: 2.5px solid #d4af3720;
+            outline-offset: 2px;
+            animation: fadeInMap 1.2s cubic-bezier(.23,1.01,.32,1) both;
+        }
+        .map-iframe:hover, .map-iframe:focus {
+            box-shadow: 0 12px 64px #d4af3740, 0 0 0 6px #d4af37cc;
+            border-radius: 32px;
+            outline: 2.5px solid #d4af37;
+        }
+        @keyframes fadeInMap {
+            from { opacity: 0; transform: scale(0.97) translateY(40px);}
+            to { opacity: 1; transform: none;}
+        }
+        .map-ornament {
+            position: absolute;
+            font-size: 2.5rem;
+            color: #d4af3720;
+            top: 10px;
+            right: 32px;
+            pointer-events: none;
+            z-index: 2;
+        }
+        .map-ornament.left {
+            left: 32px;
+            right: auto;
+            transform: scaleX(-1);
+        }
+        .map-legend {
+            background: linear-gradient(90deg, #2d2825 80%, #1a1614 100%);
+            color: #fffbe6;
+            border-radius: 14px;
+            box-shadow: 0 2px 18px #0007;
+            padding: 18px 24px;
+            max-width: 420px;
+            margin: 0 auto 28px auto;
+            font-size: 1.05rem;
+            font-family: 'Marcellus', serif;
+            border: 1.5px solid #d4af3720;
+            text-align: left;
+            animation: fadeInMap 1.5s .2s both;
+        }
+        .map-legend-title {
+            color: #d4af37;
+            font-family: 'Cinzel', serif;
+            font-size: 1.15rem;
+            margin-bottom: 6px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        .map-legend-list {
+            margin: 0;
+            padding: 0 0 0 0;
+            list-style: none;
+        }
+        .map-legend-list li {
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #fffbe6cc;
+        }
+        .map-legend-list i {
+            color: #d4af37;
+            min-width: 22px;
+            text-align: center;
+        }
+        @media (max-width: 900px) {
+            .map-iframe {
+                height: 60vh;
+                border-radius: 12px;
+            }
+            .map-header {
+                font-size: 1.5rem;
+                padding: 24px 0 10px 0;
+            }
+            .map-legend {
+                padding: 12px 8px;
+            }
+        }
+        @media (max-width: 600px) {
+            .map-header {
+                font-size: 1.1rem;
+                padding: 14px 0 6px 0;
+            }
+            .map-iframe {
+                height: 45vh;
+                border-radius: 8px;
+            }
+            .map-legend {
+                font-size: 0.97rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="epic-navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-logo">
+                <img src="img/banner.png" alt="Aeonforge Logo">
+                Æonforge
+            </a>
+            <ul class="navbar-links">
+                <li><a href="index.html"><i class="fas fa-home"></i> Start</a></li>
+                <li><a href="rules.html"><i class="fas fa-gavel"></i> Regelwerk</a></li>
+                <li class="navbar-dropdown">
+                    <a href="#" class="dropdown-toggle"><i class="fas fa-server"></i> Der Server <i class="fas fa-caret-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="howtojoin.html"><i class="ri-sword-fill"></i> How to Join</a></li>
+                        <li><a href="wiki.html"><i class="fas fa-book"></i> Wiki</a></li>
+                        <li><a href="news.html"><i class="fas fa-newspaper"></i> News</a></li>
+                        <li><a href="roadmap.html"><i class="fas fa-map"></i> Roadmap</a></li>
+                        <li><a href="servermap.html"><i class="fas fa-map-location-dot"></i> Server Map</a></li>
+                    </ul>
+                </li>
+                <li><a href="https://discord.gg/Awg9TdRdtw" target="_blank"><i class="ri-discord-line"></i> Discord</a></li>
+                <li><a href="https://aeonforge-network.net/forum/" target="_blank"><i class="fas fa-scroll"></i> Forum</a></li>
+            </ul>
+            <div class="navbar-toggle" id="navbarToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+            <div class="particles" id="particles"></div>
+    <div class="main-content">
+        <div class="map-header">
+            <span class="map-ornament left"><i class="fas fa-globe-europe"></i></span>
+            <i class="fas fa-map-location-dot"></i>Server Map
+            <span class="map-ornament"><i class="fas fa-globe-europe"></i></span>
+        </div>
+        <div class="map-desc">
+            Entdecke die Welt von Aeonforge live!<br>
+            Du kannst die Karte frei bewegen, zoomen und Orte suchen.
+        </div>
+        <div class="map-legend">
+            <div class="map-legend-title"><i class="fas fa-info-circle"></i> Tipps zur Nutzung:</div>
+            <ul class="map-legend-list">
+                <li><i class="fas fa-mouse-pointer"></i> Ziehe die Karte mit der Maus oder dem Finger.</li>
+                <li><i class="fas fa-search-plus"></i> Zoome mit Mausrad oder Pinch-Geste.</li>
+                <li><i class="fas fa-location-dot"></i> Klicke auf Marker für Infos zu Orten.</li>
+                <li><i class="fas fa-layer-group"></i> Wähle verschiedene Layer oben rechts.</li>
+                <li><i class="fas fa-expand"></i> <b>Tipp:</b> <a href="https://map.aeonforge-network.net/" target="_blank" style="color:#d4af37;text-decoration:underline;">Karte in neuem Tab öffnen</a></li>
+            </ul>
+        </div>
+        <div class="map-iframe-container">
+            <iframe 
+                class="map-iframe"
+                src="https://map.aeonforge-network.net/#cute_forest_town:4:9:0:434:0:0:0:0:perspective"
+                allowfullscreen
+                loading="lazy"
+                title="Aeonforge Server Map"
+            ></iframe>
+        </div>
+    </div>
+    <footer class="epic-footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="mailto:kontakt@aeonforge-network.net"><i class="fas fa-envelope"></i> Kontakt</a>
+                <a href="impressum.html"><i class="fas fa-balance-scale"></i> Impressum</a>
+            </div>
+            <div class="footer-text">
+                © 2025 Aeonforge Network – Ein Minecraft Community-Projekt. Nicht offiziell von Mojang/Microsoft unterstützt.
+            </div>
+        </div>
+    </footer>
+    <script src="scripts/script.js"></script>
+</body>
+</html>
