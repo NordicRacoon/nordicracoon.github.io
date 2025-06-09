@@ -349,3 +349,4 @@ document.addEventListener('keydown', function (event) {
         document.addEventListener('keydown', function(e){
             if(e.key === "Escape") document.getElementById('skinModalBg').style.display = 'none';
         });
+        
