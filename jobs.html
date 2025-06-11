@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stellenangebote | Æonforge Network</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Marcellus&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="icon" href="img/favicon.png" type="image/png">
+    <style>
+        body {
+            background: linear-gradient(120deg, #181513 80%, #23201d 100%);
+        }
+        .jobs-container {
+            max-width: 1100px;
+            margin: 60px auto 40px auto;
+            padding: 48px 18px 38px 18px;
+            color: #fffbe6;
+            background: linear-gradient(120deg, #23201d 80%, #2d2825 100%);
+            border-radius: 32px;
+            box-shadow: 0 8px 40px #000a, 0 0 0 2px #d4af3720;
+            position: relative;
+        }
+        .jobs-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2.3rem;
+            color: #d4af37;
+            margin-bottom: 18px;
+            text-align: center;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 18px #000a;
+        }
+        .jobs-intro {
+            font-family: 'Marcellus', serif;
+            color: #fffbe6cc;
+            font-size: 1.18rem;
+            margin-bottom: 38px;
+            text-align: center;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .job-categories {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+            justify-content: center;
+            margin-bottom: 32px;
+        }
+        .job-category-btn {
+            background: linear-gradient(135deg, #d4af37 0%, #b8941f 100%);
+            color: #1a1614;
+            border: none;
+            border-radius: 12px;
+            padding: 12px 32px;
+            font-family: 'Cinzel', serif;
+            font-size: 1.08rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 2px 10px #0004;
+            transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.15s;
+        }
+        .job-category-btn.active,
+        .job-category-btn:hover {
+            background: linear-gradient(135deg, #b8941f 0%, #d4af37 100%);
+            color: #fff;
+            transform: scale(1.05);
+        }
+        .jobs-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 32px;
+            margin-bottom: 38px;
+            opacity: 1;
+            transition: opacity 0.4s;
+        }
+        .jobs-list.hide {
+            opacity: 0.2;
+            pointer-events: none;
+        }
+        .job-card {
+            background: linear-gradient(120deg, #221e1c 80%, #2d2825 100%);
+            border-radius: 18px;
+            box-shadow: 0 4px 18px #0007;
+            padding: 28px 24px 22px 24px;
+            color: #fffbe6;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            border-left: 5px solid #d4af37;
+            border-bottom: 2px solid #d4af3720;
+            position: relative;
+            cursor: pointer;
+            transition: box-shadow 0.2s, border-color 0.2s, transform 0.18s, background 0.2s;
+            min-height: 180px;
+            animation: fadeInUp 0.7s;
+        }
+        .job-card:hover {
+            box-shadow: 0 12px 36px #d4af3740, 0 2px 12px #0007;
+            border-color: #b8941f;
+            background: linear-gradient(120deg, #2d2825 80%, #221e1c 100%);
+            transform: translateY(-4px) scale(1.018);
+        }
+        .job-title-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 6px;
+        }
+        .job-icon {
+            font-size: 2.2rem;
+            color: #d4af37;
+            flex-shrink: 0;
+            filter: drop-shadow(0 2px 8px #d4af3720);
+        }
+        .job-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.22rem;
+            color: #d4af37;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+        .job-short {
+            font-family: 'Marcellus', serif;
+            font-size: 1.07rem;
+            color: #fffbe6cc;
+            line-height: 1.7;
+        }
+        /* Popup Styles */
+        .job-modal-bg {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(20,16,10,0.85);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeInBg 0.4s;
+        }
+        .job-modal {
+            background: linear-gradient(120deg, #23201d 80%, #2d2825 100%);
+            border-radius: 22px;
+            box-shadow: 0 8px 40px #000a, 0 0 0 2px #d4af3720;
+            max-width: 480px;
+            width: 95vw;
+            padding: 38px 32px 28px 32px;
+            color: #fffbe6;
+            position: relative;
+            animation: fadeInUp 0.5s;
+        }
+        .job-modal-close {
+            position: absolute;
+            top: 18px;
+            right: 22px;
+            font-size: 1.7rem;
+            color: #d4af37;
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .job-modal-close:hover { color: #fffbe6; }
+        .job-modal-title-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 8px;
+        }
+        .job-modal-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.25rem;
+            color: #d4af37;
+            font-weight: bold;
+        }
+        .job-modal-category {
+            font-size: 0.98rem;
+            color: #b9ad6d;
+            margin-bottom: 8px;
+        }
+        .job-modal-desc {
+            font-family: 'Marcellus', serif;
+            font-size: 1.07rem;
+            color: #fffbe6cc;
+            margin-bottom: 10px;
+        }
+        .job-modal-tasks {
+            margin: 0 0 10px 0;
+            padding-left: 20px;
+            font-size: 1.01rem;
+            color: #fffbe6b0;
+        }
+        .job-modal-tasks li {
+            margin-bottom: 5px;
+        }
+        .job-modal-apply-btn {
+            margin-top: 18px;
+            background: linear-gradient(135deg, #d4af37 0%, #b8941f 100%);
+            color: #1a1614;
+            border-radius: 10px;
+            padding: 12px 28px;
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            font-size: 1.08rem;
+            text-decoration: none;
+            box-shadow: 0 2px 10px #0004;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            justify-content: center;
+            transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+        .job-modal-apply-btn:hover {
+            background: linear-gradient(135deg, #b8941f 0%, #d4af37 100%);
+            color: #fff;
+            box-shadow: 0 4px 18px #d4af3740;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+        @keyframes fadeInBg {
+            from { opacity: 0;}
+            to { opacity: 1;}
+        }
+        @media (max-width: 900px) {
+            .jobs-container { padding: 12px 0 12px 0; }
+            .jobs-title { font-size: 1.5rem; }
+            .jobs-list { grid-template-columns: 1fr; gap: 18px; }
+            .job-card { min-height: unset; }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-content">
+        <nav class="epic-navbar">
+            <div class="navbar-container">
+                <a href="index.html" class="navbar-logo">
+                    <img src="img/banner.png" alt="Aeonforge Logo">
+                    Æonforge
+                </a>
+                <ul class="navbar-links">
+                    <li><a href="index.html"><i class="fas fa-home"></i> Start</a></li>
+                    <li><a href="rules.html"><i class="fas fa-gavel"></i> Regelwerk</a></li>
+                    <li class="navbar-dropdown">
+                        <a href="#" class="dropdown-toggle"><i class="fas fa-server"></i> Der Server <i class="fas fa-caret-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="howtojoin.html"><i class="ri-sword-fill"></i> How to Join</a></li>
+                            <li><a href="info.html"><i class="fas fa-book"></i> Info's</a></li>
+                            <li><a href="news.html"><i class="fas fa-newspaper"></i> News</a></li>
+                            <li><a href="roadmap.html"><i class="fas fa-map"></i> Roadmap</a></li>
+                            <li><a href="servermap.html"><i class="fas fa-map"></i> Weltkarte</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="https://discord.gg/Awg9TdRdtw" target="_blank"><i class="ri-discord-line"></i> Discord</a></li>
+                    <li><a href="https://aeonforge-network.net/forum/" target="_blank"><i class="fas fa-scroll"></i> Forum</a></li>
+                </ul>
+                <div class="navbar-toggle" id="navbarToggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </nav>
+        <div class="jobs-container">
+            <div class="jobs-title"><i class="fas fa-briefcase"></i> Stellenangebote</div>
+            <div class="jobs-intro">
+                Werde Teil des Æonforge-Teams!<br>
+                Wähle eine Kategorie und entdecke spannende Aufgabenbereiche. Klicke auf eine Stelle für Details und Bewerbung.
+            </div>
+            <div class="job-categories">
+                <button class="job-category-btn active" data-category="all">Alle</button>
+                <button class="job-category-btn" data-category="developer">Developer</button>
+                <button class="job-category-btn" data-category="design">Design</button>
+                <button class="job-category-btn" data-category="mapdesign">Mapdesign</button>
+                <button class="job-category-btn" data-category="content">Content</button>
+            </div>
+            <div class="jobs-list" id="jobsList">
+                <!-- Developer -->
+                <div class="job-card" data-category="developer" data-job="senior">
+                    <div class="job-title-row">
+                        <span class="job-icon"><i class="fas fa-code"></i></span>
+                        <span class="job-title">Senior Developer</span>
+                    </div>
+                    <div class="job-short">
+                        Leitung & Entwicklung von Plugins, APIs und Tools. Technische Verantwortung.
+                    </div>
+                </div>
+                <div class="job-card" data-category="developer" data-job="junior">
+                    <div class="job-title-row">
+                        <span class="job-icon"><i class="fas fa-terminal"></i></span>
+                        <span class="job-title">Junior Developer</span>
+                    </div>
+                    <div class="job-short">
+                        Mitarbeit an Plugins, Bugfixing, neue Features lernen und umsetzen.
+                    </div>
+                </div>
+                <!-- Design -->
+                <div class="job-card" data-category="design" data-job="2d3d">
+                    <div class="job-title-row">
+                        <span class="job-icon"><i class="fas fa-paint-brush"></i></span>
+                        <span class="job-title">2D & 3D Design</span>
+                    </div>
+                    <div class="job-short">
+                        Skins, Texturen, Icons, 3D-Modelle für Items, Mobs & Welt.
+                    </div>
+                </div>
+                <div class="job-card" data-category="design" data-job="webmedia">
+                    <div class="job-title-row">
+                        <span class="job-icon"><i class="fas fa-globe"></i></span>
+                        <span class="job-title">Web & Mediendesign</span>
+                    </div>
+                    <div class="job-short">
+                        Webseiten, Banner, Social Media Content, UI/UX und Werbegrafiken.
+                    </div>
+                </div>
+                <!-- Mapdesign -->
+                <div class="job-card" data-category="mapdesign" data-job="builder">
+                    <div class="job-title-row">
+                        <span class="job-icon"><i class="fas fa-cubes"></i></span>
+                        <span class="job-title">Builder</span>
+                    </div>
+                    <div class="job-short">
+                        Bau von Städten, Landschaften, Dungeons und RP-Locations.
+                    </div>
+                </div>
+                <!-- Content -->
+                <div class="job-card" data-category="content" data-job="event">
+                    <div class="job-title-row">
+                        <span class="job-icon"><i class="fas fa-calendar-alt"></i></span>
+                        <span class="job-title">Eventmanagement</span>
+                    </div>
+                    <div class="job-short">
+                        Planung & Durchführung von Events, Community-Aktionen, Belohnungen.
+                    </div>
+                </div>
+                <div class="job-card" data-category="content" data-job="quest">
+                    <div class="job-title-row">
+                        <span class="job-icon"><i class="fas fa-feather-alt"></i></span>
+                        <span class="job-title">Questschreiber</span>
+                    </div>
+                    <div class="job-short">
+                        Quests, Dialoge, Lore, Storylines und Charakterentwicklung.
+                    </div>
+                </div>
+            </div>
+            <div style="text-align:center;margin-top:24px;">
+                <a href="mailto:kontakt@aeonforge-network.net?subject=Bewerbung%20bei%20Aeonforge" class="job-modal-apply-btn"><i class="fas fa-envelope"></i> Initiativ bewerben</a>
+            </div>
+        </div>
+    </div>
+    <!-- Job Modal Popup -->
+    <div id="jobModalBg" class="job-modal-bg" style="display:none;">
+        <div class="job-modal" id="jobModal">
+            <button class="job-modal-close" id="jobModalClose" title="Schließen">&times;</button>
+            <div class="job-modal-title-row">
+                <span class="job-icon" id="jobModalIcon"></span>
+                <span class="job-modal-title" id="jobModalTitle"></span>
+            </div>
+            <div class="job-modal-category" id="jobModalCategory"></div>
+            <div class="job-modal-desc" id="jobModalDesc"></div>
+            <ul class="job-modal-tasks" id="jobModalTasks"></ul>
+            <a href="#" target="_blank" class="job-modal-apply-btn" id="jobModalApply"><i class="fas fa-paper-plane"></i> Jetzt bewerben</a>
+        </div>
+    </div>
+        <!-- Modal direkt unter body -->
+    <div class="modal" id="modal" tabindex="-1" aria-modal="true" role="dialog" style="display:none;">
+        <div class="modal-content">
+            <span class="modal-close" id="modalClose" title="Schließen">&times;</span>
+            <div class="modal-icon" id="modalIcon"></div>
+            <div class="modal-message" id="modalMessage"></div>
+            <button class="modal-btn" id="modalOk" type="button">OK</button>
+        </div>
+    </div>
+
+    <!-- Back to Top Button direkt unter body -->
+    <button id="backToTopBtn" title="Nach oben" aria-label="Nach oben scrollen">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    <footer class="epic-footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="mailto:kontakt@aeonforge-network.net"><i class="fas fa-envelope"></i> Kontakt</a>
+                <a href="impressum.html"><i class="fas fa-balance-scale"></i> Impressum</a>
+            </div>
+            <div class="footer-text">
+                © 2025 Aeonforge Network – Ein Minecraft Community-Projekt. Nicht offiziell von Mojang/Microsoft unterstützt.
+            </div>
+        </div>
+    </footer>
+    <script src="scripts/script.js"></script>
+    <script>
+        // Kategorien-Filter
+        document.querySelectorAll('.job-category-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.job-category-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                const cat = this.dataset.category;
+                document.querySelectorAll('.job-card').forEach(card => {
+                    if (cat === "all" || card.dataset.category === cat) {
+                        card.style.display = "";
+                        setTimeout(() => card.style.animation = "fadeInUp 0.7s", 10);
+                    } else {
+                        card.style.display = "none";
+                    }
+                });
+            });
+        });
+
+        // Job-Daten für Popups
+        const jobData = {
+            senior: {
+                icon: '<i class="fas fa-code"></i>',
+                title: 'Senior Developer',
+                category: 'Developer',
+                desc: 'Du bist erfahrener Entwickler (Java, Web, Plugins) und möchtest unser Technik-Team leiten oder unterstützen? Dann bist du hier richtig!',
+                tasks: [
+                    'Leitung und Koordination des Dev-Teams',
+                    'Entwicklung & Wartung von Minecraft-Plugins (Java/Bukkit/Spigot/Paper)',
+                    'Backend- und Webentwicklung (z.B. API, Website, Tools)',
+                    'Code-Reviews, Dokumentation und Qualitätssicherung',
+                    'Technische Beratung für das Team'
+                ],
+                mail: 'mailto:kontakt@aeonforge-network.net?subject=Bewerbung%20Senior%20Developer'
+            },
+            junior: {
+                icon: '<i class="fas fa-terminal"></i>',
+                title: 'Junior Developer',
+                category: 'Developer',
+                desc: 'Du hast erste Erfahrungen in der Entwicklung (Java, Web, Plugins) und willst dazulernen? Wir fördern dich und bieten spannende Projekte!',
+                tasks: [
+                    'Mitarbeit an Minecraft-Plugins und Webprojekten',
+                    'Fehleranalyse und Bugfixing',
+                    'Unterstützung bei der Umsetzung neuer Features',
+                    'Lernen von erfahrenen Entwicklern im Team'
+                ],
+                mail: 'mailto:kontakt@aeonforge-network.net?subject=Bewerbung%20Junior%20Developer'
+            },
+            "2d3d": {
+                icon: '<i class="fas fa-paint-brush"></i>',
+                title: '2D & 3D Design',
+                category: 'Design',
+                desc: 'Du bist kreativ mit Pixeln, Texturen oder 3D-Modellen? Hilf uns beim Erstellen von Skins, Items, Texturen oder Models für unsere Welt!',
+                tasks: [
+                    'Erstellung von Minecraft-Skins, Texturen und Icons',
+                    'Design und Modellierung von 3D-Objekten (Blockbench, Blender o.ä.)',
+                    'Bearbeitung von Grafiken für Website, Social Media & Events',
+                    'Enge Zusammenarbeit mit Buildern und Entwicklern'
+                ],
+                mail: 'mailto:kontakt@aeonforge-network.net?subject=Bewerbung%202D%20und%203D%20Design'
+            },
+            webmedia: {
+                icon: '<i class="fas fa-globe"></i>',
+                title: 'Web & Mediendesign',
+                category: 'Design',
+                desc: 'Du hast ein Auge für Design, Webseiten oder Social Media? Unterstütze uns bei der Gestaltung von Webauftritt, Grafiken und Medien!',
+                tasks: [
+                    'Gestaltung und Pflege der Projekt-Webseite',
+                    'Erstellung von Bannern, Thumbnails und Social Media Content',
+                    'Mitwirkung an Werbeaktionen und Community-Posts',
+                    'Optimierung von UI/UX für Web und Ingame'
+                ],
+                mail: 'mailto:kontakt@aeonforge-network.net?subject=Bewerbung%20Web%20und%20Mediendesign'
+            },
+            builder: {
+                icon: '<i class="fas fa-cubes"></i>',
+                title: 'Builder',
+                category: 'Mapdesign',
+                desc: 'Du liebst es, epische Bauwerke in Minecraft zu erschaffen? Werde Teil unseres Builder-Teams und gestalte die Welt von Æonforge aktiv mit!',
+                tasks: [
+                    'Bau von Städten, Dörfern, Landschaften und Dungeons',
+                    'Arbeiten im Team an Großprojekten und Events',
+                    'Gestaltung von RP-Orten und Questrelevanten Locations',
+                    'Verwendung von WorldEdit, VoxelSniper & Co. (Einarbeitung möglich)'
+                ],
+                mail: 'mailto:kontakt@aeonforge-network.net?subject=Bewerbung%20Builder'
+            },
+            event: {
+                icon: '<i class="fas fa-calendar-alt"></i>',
+                title: 'Eventmanagement',
+                category: 'Content',
+                desc: 'Du hast Spaß an Organisation und möchtest spannende Events für die Community planen und durchführen? Dann bist du hier genau richtig!',
+                tasks: [
+                    'Planung und Durchführung von Ingame-Events',
+                    'Koordination mit Team und Community',
+                    'Entwicklung neuer Eventideen und Belohnungssysteme',
+                    'Dokumentation und Nachbereitung von Events'
+                ],
+                mail: 'mailto:kontakt@aeonforge-network.net?subject=Bewerbung%20Eventmanagement'
+            },
+            quest: {
+                icon: '<i class="fas fa-feather-alt"></i>',
+                title: 'Questschreiber',
+                category: 'Content',
+                desc: 'Du hast ein Talent für Geschichten und möchtest Quests, Dialoge oder Lore für unsere Welt schreiben? Lass deiner Kreativität freien Lauf!',
+                tasks: [
+                    'Verfassen von Quests, Dialogen und Storylines',
+                    'Entwicklung von Charakteren und Fraktionen',
+                    'Zusammenarbeit mit Buildern und Eventteam',
+                    'Mitgestaltung der Server-Lore und Hintergrundgeschichten'
+                ],
+                mail: 'mailto:kontakt@aeonforge-network.net?subject=Bewerbung%20Questschreiber'
+            }
+        };
+
+        // Popup-Logik
+        document.querySelectorAll('.job-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const job = this.dataset.job;
+                const data = jobData[job];
+                if (!data) return;
+                document.getElementById('jobModalIcon').innerHTML = data.icon;
+                document.getElementById('jobModalTitle').textContent = data.title;
+                document.getElementById('jobModalCategory').textContent = data.category;
+                document.getElementById('jobModalDesc').textContent = data.desc;
+                const tasks = document.getElementById('jobModalTasks');
+                tasks.innerHTML = "";
+                data.tasks.forEach(t => {
+                    const li = document.createElement('li');
+                    li.textContent = t;
+                    tasks.appendChild(li);
+                });
+                document.getElementById('jobModalApply').href = data.mail;
+                document.getElementById('jobModalBg').style.display = "flex";
+                setTimeout(() => document.getElementById('jobModal').focus(), 100);
+            });
+        });
+        document.getElementById('jobModalClose').onclick = function() {
+            document.getElementById('jobModalBg').style.display = "none";
+        };
+        document.getElementById('jobModalBg').onclick = function(e) {
+            if (e.target === this) this.style.display = "none";
+        };
+        document.addEventListener('keydown', function(e) {
+            if (e.key === "Escape") document.getElementById('jobModalBg').style.display = "none";
+        });
+    </script>
+</body>
+</html>
