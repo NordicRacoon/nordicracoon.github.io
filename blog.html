@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NordicRacoon – Blog</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+  <div class="bg-animation"></div>
+
+  <!-- Floating Navigation -->
+
+
+  <nav class="floating-nav" id="floatingNav" style="display: flex; align-items: center; padding: 0.8rem 2rem;">
+    <a href="#" class="nav-logo">
+      <img src="images/logo.svg" alt="Logo" style="height: 28px;">
+    </a>
+
+    <div style="display: flex; gap: 1.5rem; justify-content: center; flex-grow: 1;">
+      <a href="index.html" data-section="about">Startseite</a>
+      <a href="galerie.html" data-section="projects">Galerie</a>
+      <a href="blog.html" data-section="skills">Blog</a>
+    </div>
+
+
+    <div style="display: flex; gap: 0.5rem; margin-left: auto;">
+      <a href="https://nordicracoon.gitbook.io" target="_blank" class="nav-icon-link" title="Docs">📘</a>
+      <a href="https://discord.gg/Y2ems85X7p" target="_blank" class="nav-icon-link" title="Discord">
+        <img src="images/discord.svg" alt="Discord-Logo">
+      </a>
+    </div>
+  </nav>
+
+
+
+  <header>
+    <div class="logo-container">
+      <div class="logo-placeholder" id="logoContainer">
+        <div class="logo-fallback">NR</div>
+      </div>
+    </div>
+    <div class="header-content">
+      <h1 class="logo">NordicRacoon</h1>
+    </div>
+
+    <nav class="header-nav-modern"
+      style="display: flex; align-items: center; justify-content: space-between; padding: 0.8rem 5rem;">
+      <div style="flex: 1;"></div>
+
+      <div style="flex: 1; display: flex; justify-content: center; gap: 1rem;">
+        <a href="index.html" data-section="about">Startseite</a>
+        <a href="galerie.html" data-section="projects">Galerie</a>
+        <a href="blog.html" data-section="skills">Blog</a>
+      </div>
+
+      <div style="flex: 1; display: flex; justify-content: flex-end; gap: 1.2rem;">
+        <a href="https://nordicracoon.gitbook.io" target="_blank" class="nav-icon-link" title="Docs">📘</a>
+        <a href="https://discord.gg/Y2ems85X7p" target="_blank" class="nav-icon-link" title="Discord">
+          <img src="images/discord.svg" alt="Discord-Logo">
+        </a>
+      </div>
+    </nav>
+
+
+  </header>
+
+  <main>
+    <section id="blog">
+      <h2>Blog</h2>
+      <div class="projects-grid">
+        <div class="project">
+          <h3>Blogpost Formatierung</h3>
+          <p><strong>26. Mai 2025</strong></p>
+          <p>Eine Liste an Bausteinen und Formatierungsmöglichkeiten für Blogposts</p>
+          <a href="blogposts/post-26.05.2025.html" class="project-link">Mehr lesen →</a>
+        </div>
+        <div class="project">
+          <h3>Blogpost Formatierung</h3>
+          <p><strong>26. Mai 2025</strong></p>
+          <p>Eine Liste an Bausteinen und Formatierungsmöglichkeiten für Blogposts</p>
+          <a href="blogposts/post-26.05.2025.html" class="project-link">Mehr lesen →</a>
+        </div>
+        <div class="project">
+          <h3>Blogpost Formatierung</h3>
+          <p><strong>26. Mai 2025</strong></p>
+          <p>Eine Liste an Bausteinen und Formatierungsmöglichkeiten für Blogposts</p>
+          <a href="blogposts/post-26.05.2025.html" class="project-link">Mehr lesen →</a>
+        </div>
+        <div class="project">
+          <h3>Blogpost Formatierung</h3>
+          <p><strong>26. Mai 2025</strong></p>
+          <p>Eine Liste an Bausteinen und Formatierungsmöglichkeiten für Blogposts</p>
+          <a href="blogposts/post-26.05.2025.html" class="project-link">Mehr lesen →</a>
+        </div>
+        <div class="project">
+          <h3>Blogpost Formatierung</h3>
+          <p><strong>26. Mai 2025</strong></p>
+          <p>Eine Liste an Bausteinen und Formatierungsmöglichkeiten für Blogposts</p>
+          <a href="blogposts/post-26.05.2025.html" class="project-link">Mehr lesen →</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>&copy; ᴍᴀᴅᴇ ᴡɪᴛʜ ♥ ʙʏ ɴᴏʀᴅɪᴄʀᴀᴄᴏᴏɴ • 2025 • All Rights Reserved</footer>
+  <script>
+
+    // Parallax effect for background
+    window.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset;
+      const rate = scrolled * -0.5;
+      const bgAnimation = document.querySelector('.bg-animation');
+      bgAnimation.style.transform = `translateY(${rate}px)`;
+    });
+
+    // Logo loading functionality
+    function loadLogo() {
+      const logoContainer = document.getElementById('logoContainer');
+      const logoFormats = ['logo.png', 'logo.jpg', 'logo.jpeg', 'logo.svg', 'logo.webp'];
+
+      let logoLoaded = false;
+
+      logoFormats.forEach(format => {
+        if (logoLoaded) return;
+
+        const img = new Image();
+        img.onload = function () {
+          if (!logoLoaded) {
+            logoLoaded = true;
+            logoContainer.innerHTML = `<img src="images/${format}" alt="NordicRacoon Logo" class="logo-image">`;
+          }
+        };
+        img.onerror = function () {
+          // Logo not found, keep fallback
+        };
+        img.src = `images/${format}`;
+      });
+    }
+
+    // Load logo when page loads
+    window.addEventListener('load', loadLogo);
+
+    // Floating navigation functionality
+    const floatingNav = document.getElementById('floatingNav');
+    const navLinks = floatingNav.querySelectorAll('a[data-section]');
+    let currentSection = '';
+
+    // Show/hide floating nav on scroll
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY;
+      const headerHeight = document.querySelector('header').offsetHeight;
+
+      if (scrollY > headerHeight + 100) {
+        floatingNav.classList.add('visible');
+      } else {
+        floatingNav.classList.remove('visible');
+      }
+
+      // Update active nav link
+      updateActiveNavLink();
+    });
+  </script>
+</body>
+
+</html>
